@@ -46,3 +46,13 @@
   - Structure First, Reason Next: LLM + KG (2026)
 - Added 6 web clips: Wikidata financial structure, DBpedia classes, LSEG PermID, identifier standards, SemanticXBRL, LKIF
 - Total: 27 source files ready for ingestion into wiki
+
+## [2026-04-05] ingest | Ingested 27 stock market ontology sources into wiki
+
+- Created 11 new concept pages: Financial Ontology, Financial Instrument, Securities, Derivatives, Legal Entity, Financial Identifier, Financial Knowledge Graph, Market Data, Stock Exchange, SKOS, LKIF
+- Created 19 new entity pages: FIBO, ISO 20022, GLEIF, XBRL, FIGI, ISDA CDM, FpML, FIX Protocol, FinRegOnt, FDC3, Schema.org Financial, GoodRelations, ISO 10962 CFI, FinDKG, FinKario, FinReflectKG, OntoFiC, SemanticXBRL, PermID
+- Created 3 new comparison pages: FIBO vs Schema.org Financial, FpML vs FIX vs ISO 20022, Financial Identifier Comparison
+- Created 2 new guide pages: Building a Financial Knowledge Graph, Exploring FIBO
+- Updated index.md with new sections: Financial Ontology Concepts, Standards & Ontologies, Financial KG Projects
+- Regenerated wiki-graph.html: 59 nodes, 507 edges
+- Total wiki: 26 concepts | 19 entities | 4 guides | 6 comparisons = 55 pages
