@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ontology Wiki — Knowledge Graph</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;600;700;800&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0d1117;
+    --surface:   #161b22;
+    --border:    #21262d;
+    --border2:   #30363d;
+    --text:      #e6edf3;
+    --muted:     #8b949e;
+    --blue:      #58a6ff;
+    --green:     #3fb950;
+    --amber:     #d29922;
+    --coral:     #f78166;
+    --blue-dim:  rgba(88,166,255,0.15);
+    --green-dim: rgba(63,185,80,0.15);
+    --amber-dim: rgba(210,153,34,0.15);
+    --coral-dim: rgba(247,129,102,0.15);
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    overflow: hidden;
+  }
+
+  /* ── Title bar ── */
+  #title-bar {
+    position: fixed;
+    top: 0; left: 50%; transform: translateX(-50%);
+    z-index: 100;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: none;
+  }
+  #title-bar h1 {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+    opacity: 0.9;
+  }
+  #title-bar .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  /* ── Search ── */
+  #search-wrap {
+    position: fixed;
+    top: 14px; left: 16px;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  #search {
+    width: 220px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px 8px 36px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  #search::placeholder { color: var(--muted); }
+  #search:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(88,166,255,0.15);
+  }
+  #search-icon {
+    position: absolute;
+    left: 10px;
+    color: var(--muted);
+    font-size: 13px;
+    pointer-events: none;
+  }
+  #search-results {
+    position: fixed;
+    top: 50px; left: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    min-width: 220px;
+    z-index: 300;
+    display: none;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+  .search-result-item {
+    padding: 8px 14px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    transition: background 0.15s;
+  }
+  .search-result-item:hover { background: var(--border); }
+  .search-result-item .cat-dot {
+    width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+  }
+
+  /* ── Stats ── */
+  #stats {
+    position: fixed;
+    top: 14px; right: 16px;
+    z-index: 100;
+    display: flex;
+    gap: 6px;
+  }
+  .stat-pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .stat-pill strong { color: var(--text); font-weight: 600; }
+
+  /* ── Legend ── */
+  #legend {
+    position: fixed;
+    bottom: 16px; right: 16px;
+    z-index: 100;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    min-width: 160px;
+  }
+  #legend h3 {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 7px;
+    font-size: 12px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .legend-item:last-child { margin-bottom: 0; }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+
+  /* ── Detail sidebar ── */
+  #sidebar {
+    position: fixed;
+    top: 0; right: 0;
+    width: 320px; height: 100%;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    z-index: 150;
+    transform: translateX(100%);
+    transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+    overflow-y: auto;
+    padding: 0;
+  }
+  #sidebar.open { transform: translateX(0); }
+  #sidebar-inner { padding: 20px; }
+  #sidebar-close {
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+  }
+  #sidebar-close button {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  #sidebar-close button:hover { color: var(--text); border-color: var(--border2); }
+  #sidebar-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .sidebar-category {
+    display: inline-block;
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 14px;
+    margin-top: 4px;
+  }
+  .sidebar-section {
+    margin-bottom: 18px;
+  }
+  .sidebar-section h4 {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+  }
+  .sidebar-section p {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.65;
+    opacity: 0.85;
+  }
+  .conn-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text);
+    margin: 3px 3px 3px 0;
+  }
+  .conn-chip .chip-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+  /* ── SVG / graph canvas ── */
+  #graph-canvas { width: 100%; height: 100%; display: block; }
+
+  .node-label {
+    fill: #e6edf3;
+    font-family: 'JetBrains Mono', monospace;
+    pointer-events: none;
+    text-shadow: 0 1px 4px #0d1117, 0 0 8px #0d1117;
+    paint-order: stroke fill;
+    stroke: #0d1117;
+    stroke-width: 3px;
+    dominant-baseline: middle;
+  }
+
+  .link { stroke-linecap: round; }
+
+  .tooltip {
+    position: fixed;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    pointer-events: none;
+    z-index: 500;
+    opacity: 0;
+    transition: opacity 0.15s;
+    max-width: 200px;
+  }
+  .tooltip.visible { opacity: 1; }
+  .tooltip strong { display: block; color: var(--text); margin-bottom: 3px; font-size: 13px; }
+  .tooltip span { color: var(--muted); }
+
+  /* ── Zoom controls ── */
+  #zoom-controls {
+    position: fixed;
+    bottom: 16px; left: 16px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .zoom-btn {
+    width: 32px; height: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+    font-family: monospace;
+  }
+  .zoom-btn:hover { background: var(--border); border-color: var(--border2); }
+</style>
+</head>
+<body>
+
+<!-- Title -->
+<div id="title-bar">
+  <div class="dot"></div>
+  <h1>Ontology Wiki &mdash; Knowledge Graph</h1>
+</div>
+
+<!-- Search -->
+<div id="search-wrap">
+  <span id="search-icon">⌕</span>
+  <input id="search" type="text" placeholder="Search nodes…" autocomplete="off" spellcheck="false">
+</div>
+<div id="search-results"></div>
+
+<!-- Stats -->
+<div id="stats">
+  <div class="stat-pill"><strong id="stat-nodes">0</strong> nodes</div>
+  <div class="stat-pill"><strong id="stat-edges">0</strong> edges</div>
+  <div class="stat-pill">avg <strong id="stat-avg">0</strong> conn</div>
+</div>
+
+<!-- Legend -->
+<div id="legend">
+  <h3>Categories</h3>
+  <div class="legend-item"><div class="legend-dot" style="background:#58a6ff"></div>Concepts</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#3fb950"></div>Entities</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#d29922"></div>Comparisons</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f78166"></div>Guides</div>
+</div>
+
+<!-- Sidebar -->
+<div id="sidebar">
+  <div id="sidebar-close">
+    <span id="sidebar-title">—</span>
+    <button onclick="closeSidebar()">✕ close</button>
+  </div>
+  <div id="sidebar-inner">
+    <div id="sidebar-body"></div>
+  </div>
+</div>
+
+<!-- Tooltip -->
+<div class="tooltip" id="tooltip">
+  <strong id="tt-name"></strong>
+  <span id="tt-info"></span>
+</div>
+
+<!-- Zoom controls -->
+<div id="zoom-controls">
+  <button class="zoom-btn" id="btn-zoom-in" title="Zoom in">+</button>
+  <button class="zoom-btn" id="btn-zoom-out" title="Zoom out">−</button>
+  <button class="zoom-btn" id="btn-zoom-fit" title="Fit" style="font-size:12px">⤢</button>
+</div>
+
+<!-- Main SVG -->
+<svg id="graph-canvas"></svg>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// EMBEDDED GRAPH DATA
+// Extracted from wiki/ markdown files — nodes + edges from [[wikilinks]]
+// ═══════════════════════════════════════════════════════════════════
+const GRAPH_DATA = {
+  nodes: [
+    // ── concepts ──
+    { id: "Class and Property", category: "concepts" },
+    { id: "Description Logic", category: "concepts" },
+    { id: "Inference and Reasoning", category: "concepts" },
+    { id: "Knowledge Graph", category: "concepts" },
+    { id: "Linked Data", category: "concepts" },
+    { id: "Ontology", category: "concepts" },
+    { id: "OWL", category: "concepts" },
+    { id: "RDF", category: "concepts" },
+    { id: "RDFS", category: "concepts" },
+    { id: "Semantic Web", category: "concepts" },
+    { id: "SHACL", category: "concepts" },
+    { id: "SPARQL", category: "concepts" },
+    { id: "Taxonomy", category: "concepts" },
+    { id: "Triple", category: "concepts" },
+    { id: "URI and IRI", category: "concepts" },
+    // ── entities ──
+    { id: "DBpedia", category: "entities" },
+    { id: "Protege", category: "entities" },
+    { id: "W3C", category: "entities" },
+    { id: "Wikidata", category: "entities" },
+    // ── comparisons ──
+    { id: "Ontology vs Taxonomy", category: "comparisons" },
+    { id: "OWL vs RDFS", category: "comparisons" },
+    { id: "Property Graph vs RDF", category: "comparisons" },
+    // ── guides ──
+    { id: "Getting Started with Ontologies", category: "guides" },
+    { id: "Your First RDF Graph", category: "guides" },
+  ],
+  edges: [
+    // Class and Property → ...
+    { source: "Class and Property", target: "Ontology" },
+    { source: "Class and Property", target: "Description Logic" },
+    { source: "Class and Property", target: "Triple" },
+    { source: "Class and Property", target: "RDF" },
+    { source: "Class and Property", target: "RDFS" },
+    { source: "Class and Property", target: "OWL" },
+    { source: "Class and Property", target: "SPARQL" },
+    { source: "Class and Property", target: "Inference and Reasoning" },
+    { source: "Class and Property", target: "Taxonomy" },
+    { source: "Class and Property", target: "URI and IRI" },
+    { source: "Class and Property", target: "SHACL" },
+    { source: "Class and Property", target: "Knowledge Graph" },
+    // Description Logic → ...
+    { source: "Description Logic", target: "OWL" },
+    { source: "Description Logic", target: "Ontology" },
+    { source: "Description Logic", target: "RDFS" },
+    { source: "Description Logic", target: "RDF" },
+    { source: "Description Logic", target: "Inference and Reasoning" },
+    { source: "Description Logic", target: "Triple" },
+    { source: "Description Logic", target: "SPARQL" },
+    // Inference and Reasoning → ...
+    { source: "Inference and Reasoning", target: "RDF" },
+    { source: "Inference and Reasoning", target: "Ontology" },
+    { source: "Inference and Reasoning", target: "Knowledge Graph" },
+    { source: "Inference and Reasoning", target: "Triple" },
+    { source: "Inference and Reasoning", target: "RDFS" },
+    { source: "Inference and Reasoning", target: "OWL" },
+    { source: "Inference and Reasoning", target: "SPARQL" },
+    { source: "Inference and Reasoning", target: "SHACL" },
+    // Knowledge Graph → ...
+    { source: "Knowledge Graph", target: "Triple" },
+    { source: "Knowledge Graph", target: "Semantic Web" },
+    { source: "Knowledge Graph", target: "Ontology" },
+    { source: "Knowledge Graph", target: "URI and IRI" },
+    { source: "Knowledge Graph", target: "SPARQL" },
+    { source: "Knowledge Graph", target: "Linked Data" },
+    { source: "Knowledge Graph", target: "RDF" },
+    { source: "Knowledge Graph", target: "OWL" },
+    { source: "Knowledge Graph", target: "RDFS" },
+    // Linked Data → ...
+    { source: "Linked Data", target: "URI and IRI" },
+    { source: "Linked Data", target: "RDF" },
+    { source: "Linked Data", target: "Semantic Web" },
+    { source: "Linked Data", target: "SPARQL" },
+    { source: "Linked Data", target: "OWL" },
+    { source: "Linked Data", target: "Triple" },
+    { source: "Linked Data", target: "Ontology" },
+    // Ontology → ...
+    { source: "Ontology", target: "Taxonomy" },
+    { source: "Ontology", target: "Semantic Web" },
+    { source: "Ontology", target: "RDF" },
+    { source: "Ontology", target: "RDFS" },
+    { source: "Ontology", target: "OWL" },
+    { source: "Ontology", target: "Triple" },
+    // OWL → ...
+    { source: "OWL", target: "Semantic Web" },
+    { source: "OWL", target: "RDF" },
+    { source: "OWL", target: "RDFS" },
+    { source: "OWL", target: "SPARQL" },
+    { source: "OWL", target: "SHACL" },
+    { source: "OWL", target: "Triple" },
+    { source: "OWL", target: "URI and IRI" },
+    // RDF → ...
+    { source: "RDF", target: "Triple" },
+    { source: "RDF", target: "Semantic Web" },
+    { source: "RDF", target: "URI and IRI" },
+    { source: "RDF", target: "RDFS" },
+    { source: "RDF", target: "SPARQL" },
+    // RDFS → ...
+    { source: "RDFS", target: "Triple" },
+    { source: "RDFS", target: "Taxonomy" },
+    { source: "RDFS", target: "SPARQL" },
+    { source: "RDFS", target: "Linked Data" },
+    { source: "RDFS", target: "SHACL" },
+    // Semantic Web → ...
+    { source: "Semantic Web", target: "RDFS" },
+    { source: "Semantic Web", target: "SPARQL" },
+    { source: "Semantic Web", target: "URI and IRI" },
+    { source: "Semantic Web", target: "Inference and Reasoning" },
+    { source: "Semantic Web", target: "Triple" },
+    // SHACL → ...
+    { source: "SHACL", target: "RDF" },
+    { source: "SHACL", target: "Knowledge Graph" },
+    { source: "SHACL", target: "Description Logic" },
+    { source: "SHACL", target: "Triple" },
+    { source: "SHACL", target: "SPARQL" },
+    { source: "SHACL", target: "Ontology" },
+    // SPARQL → ...
+    { source: "SPARQL", target: "Triple" },
+    { source: "SPARQL", target: "URI and IRI" },
+    { source: "SPARQL", target: "Ontology" },
+    // Taxonomy → ...
+    { source: "Taxonomy", target: "OWL" },
+    { source: "Taxonomy", target: "SPARQL" },
+    { source: "Taxonomy", target: "Knowledge Graph" },
+    { source: "Taxonomy", target: "RDF" },
+    { source: "Taxonomy", target: "Inference and Reasoning" },
+    { source: "Taxonomy", target: "URI and IRI" },
+    { source: "Taxonomy", target: "Description Logic" },
+    { source: "Taxonomy", target: "Linked Data" },
+    // Triple → ...
+    { source: "Triple", target: "URI and IRI" },
+    // URI and IRI → ...
+    { source: "URI and IRI", target: "Ontology" },
+    // DBpedia → ...
+    { source: "DBpedia", target: "Knowledge Graph" },
+    { source: "DBpedia", target: "RDF" },
+    { source: "DBpedia", target: "Linked Data" },
+    { source: "DBpedia", target: "URI and IRI" },
+    { source: "DBpedia", target: "Ontology" },
+    { source: "DBpedia", target: "Class and Property" },
+    { source: "DBpedia", target: "SPARQL" },
+    { source: "DBpedia", target: "Wikidata" },
+    { source: "DBpedia", target: "OWL" },
+    { source: "DBpedia", target: "Inference and Reasoning" },
+    { source: "DBpedia", target: "Triple" },
+    { source: "DBpedia", target: "W3C" },
+    // Protege → ...
+    { source: "Protege", target: "Ontology" },
+    { source: "Protege", target: "OWL" },
+    { source: "Protege", target: "RDFS" },
+    { source: "Protege", target: "Semantic Web" },
+    { source: "Protege", target: "Class and Property" },
+    { source: "Protege", target: "Inference and Reasoning" },
+    { source: "Protege", target: "Description Logic" },
+    { source: "Protege", target: "SPARQL" },
+    { source: "Protege", target: "Triple" },
+    { source: "Protege", target: "W3C" },
+    // W3C → ...
+    { source: "W3C", target: "Semantic Web" },
+    { source: "W3C", target: "Knowledge Graph" },
+    { source: "W3C", target: "RDF" },
+    { source: "W3C", target: "Triple" },
+    { source: "W3C", target: "RDFS" },
+    { source: "W3C", target: "OWL" },
+    { source: "W3C", target: "Ontology" },
+    { source: "W3C", target: "Description Logic" },
+    { source: "W3C", target: "SPARQL" },
+    { source: "W3C", target: "SHACL" },
+    { source: "W3C", target: "Linked Data" },
+    { source: "W3C", target: "URI and IRI" },
+    { source: "W3C", target: "Wikidata" },
+    // Wikidata → ...
+    { source: "Wikidata", target: "Knowledge Graph" },
+    { source: "Wikidata", target: "Triple" },
+    { source: "Wikidata", target: "RDF" },
+    { source: "Wikidata", target: "SPARQL" },
+    { source: "Wikidata", target: "Linked Data" },
+    { source: "Wikidata", target: "URI and IRI" },
+    { source: "Wikidata", target: "Ontology" },
+    // Ontology vs Taxonomy → ...
+    { source: "Ontology vs Taxonomy", target: "Ontology" },
+    { source: "Ontology vs Taxonomy", target: "Taxonomy" },
+    { source: "Ontology vs Taxonomy", target: "Description Logic" },
+    { source: "Ontology vs Taxonomy", target: "OWL" },
+    { source: "Ontology vs Taxonomy", target: "RDFS" },
+    { source: "Ontology vs Taxonomy", target: "RDF" },
+    { source: "Ontology vs Taxonomy", target: "W3C" },
+    { source: "Ontology vs Taxonomy", target: "Class and Property" },
+    { source: "Ontology vs Taxonomy", target: "Inference and Reasoning" },
+    { source: "Ontology vs Taxonomy", target: "Linked Data" },
+    // OWL vs RDFS → ...
+    { source: "OWL vs RDFS", target: "OWL" },
+    { source: "OWL vs RDFS", target: "RDFS" },
+    { source: "OWL vs RDFS", target: "W3C" },
+    { source: "OWL vs RDFS", target: "RDF" },
+    { source: "OWL vs RDFS", target: "Description Logic" },
+    { source: "OWL vs RDFS", target: "Protege" },
+    { source: "OWL vs RDFS", target: "Class and Property" },
+    { source: "OWL vs RDFS", target: "Inference and Reasoning" },
+    { source: "OWL vs RDFS", target: "Ontology" },
+    { source: "OWL vs RDFS", target: "Triple" },
+    // Property Graph vs RDF → ...
+    { source: "Property Graph vs RDF", target: "RDF" },
+    { source: "Property Graph vs RDF", target: "W3C" },
+    { source: "Property Graph vs RDF", target: "Triple" },
+    { source: "Property Graph vs RDF", target: "RDFS" },
+    { source: "Property Graph vs RDF", target: "OWL" },
+    { source: "Property Graph vs RDF", target: "SPARQL" },
+    { source: "Property Graph vs RDF", target: "Linked Data" },
+    { source: "Property Graph vs RDF", target: "Knowledge Graph" },
+    { source: "Property Graph vs RDF", target: "Wikidata" },
+    { source: "Property Graph vs RDF", target: "DBpedia" },
+    { source: "Property Graph vs RDF", target: "URI and IRI" },
+    { source: "Property Graph vs RDF", target: "Inference and Reasoning" },
+    { source: "Property Graph vs RDF", target: "SHACL" },
+    // Getting Started with Ontologies → ...
+    { source: "Getting Started with Ontologies", target: "Ontology" },
+    { source: "Getting Started with Ontologies", target: "Knowledge Graph" },
+    { source: "Getting Started with Ontologies", target: "Semantic Web" },
+    { source: "Getting Started with Ontologies", target: "Linked Data" },
+    { source: "Getting Started with Ontologies", target: "Wikidata" },
+    { source: "Getting Started with Ontologies", target: "DBpedia" },
+    { source: "Getting Started with Ontologies", target: "RDF" },
+    { source: "Getting Started with Ontologies", target: "Triple" },
+    { source: "Getting Started with Ontologies", target: "URI and IRI" },
+    { source: "Getting Started with Ontologies", target: "RDFS" },
+    { source: "Getting Started with Ontologies", target: "Class and Property" },
+    { source: "Getting Started with Ontologies", target: "Inference and Reasoning" },
+    { source: "Getting Started with Ontologies", target: "OWL" },
+    { source: "Getting Started with Ontologies", target: "Description Logic" },
+    { source: "Getting Started with Ontologies", target: "Ontology vs Taxonomy" },
+    { source: "Getting Started with Ontologies", target: "Protege" },
+    { source: "Getting Started with Ontologies", target: "SPARQL" },
+    { source: "Getting Started with Ontologies", target: "SHACL" },
+    { source: "Getting Started with Ontologies", target: "W3C" },
+    // Your First RDF Graph → ...
+    { source: "Your First RDF Graph", target: "RDF" },
+    { source: "Your First RDF Graph", target: "SPARQL" },
+    { source: "Your First RDF Graph", target: "Triple" },
+    { source: "Your First RDF Graph", target: "URI and IRI" },
+    { source: "Your First RDF Graph", target: "Linked Data" },
+    { source: "Your First RDF Graph", target: "RDFS" },
+    { source: "Your First RDF Graph", target: "Inference and Reasoning" },
+    { source: "Your First RDF Graph", target: "Class and Property" },
+    { source: "Your First RDF Graph", target: "OWL" },
+    { source: "Your First RDF Graph", target: "Protege" },
+    { source: "Your First RDF Graph", target: "SHACL" },
+    { source: "Your First RDF Graph", target: "Wikidata" },
+    { source: "Your First RDF Graph", target: "DBpedia" },
+  ]
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// COLOUR + HELPERS
+// ═══════════════════════════════════════════════════════════════════
+const CAT_COLOR = {
+  concepts:    "#58a6ff",
+  entities:    "#3fb950",
+  comparisons: "#d29922",
+  guides:      "#f78166",
+};
+const CAT_DIM = {
+  concepts:    "rgba(88,166,255,0.12)",
+  entities:    "rgba(63,185,80,0.12)",
+  comparisons: "rgba(210,153,34,0.12)",
+  guides:      "rgba(247,129,102,0.12)",
+};
+const CAT_LABEL = {
+  concepts:    "Concept",
+  entities:    "Entity",
+  comparisons: "Comparison",
+  guides:      "Guide",
+};
+
+function nodeColor(d)   { return CAT_COLOR[d.category] || "#8b949e"; }
+function nodeRadius(d)  { return Math.max(6, Math.min(22, 6 + d.degree * 1.6)); }
+function labelSize(d)   { return Math.max(9, Math.min(13, 8 + d.degree * 0.6)); }
+
+// ═══════════════════════════════════════════════════════════════════
+// BUILD ADJACENCY / DEGREE
+// ═══════════════════════════════════════════════════════════════════
+const nodeMap = {};
+GRAPH_DATA.nodes.forEach(n => {
+  n.degree = 0;
+  n.neighbors = new Set();
+  nodeMap[n.id] = n;
+});
+
+// Deduplicate edges (undirected for counting)
+const edgeSet = new Set();
+const cleanEdges = [];
+GRAPH_DATA.edges.forEach(e => {
+  const a = e.source < e.target ? e.source : e.target;
+  const b = e.source < e.target ? e.target : e.source;
+  const key = a + "|||" + b;
+  if (!edgeSet.has(key) && nodeMap[e.source] && nodeMap[e.target]) {
+    edgeSet.add(key);
+    cleanEdges.push({ source: e.source, target: e.target });
+  }
+});
+
+cleanEdges.forEach(e => {
+  if (nodeMap[e.source]) { nodeMap[e.source].degree++; nodeMap[e.source].neighbors.add(e.target); }
+  if (nodeMap[e.target]) { nodeMap[e.target].degree++; nodeMap[e.target].neighbors.add(e.source); }
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// STATS
+// ═══════════════════════════════════════════════════════════════════
+const totalNodes = GRAPH_DATA.nodes.length;
+const totalEdges = cleanEdges.length;
+const avgConn = (cleanEdges.length * 2 / totalNodes).toFixed(1);
+document.getElementById("stat-nodes").textContent = totalNodes;
+document.getElementById("stat-edges").textContent = totalEdges;
+document.getElementById("stat-avg").textContent = avgConn;
+
+// ═══════════════════════════════════════════════════════════════════
+// D3 SETUP
+// ═══════════════════════════════════════════════════════════════════
+const svg = d3.select("#graph-canvas");
+const W = window.innerWidth, H = window.innerHeight;
+svg.attr("viewBox", `0 0 ${W} ${H}`);
+
+// Defs: glow filter
+const defs = svg.append("defs");
+const filter = defs.append("filter").attr("id", "glow").attr("x", "-50%").attr("y", "-50%").attr("width", "200%").attr("height", "200%");
+filter.append("feGaussianBlur").attr("in", "SourceGraphic").attr("stdDeviation", "4").attr("result", "blur");
+const feMerge = filter.append("feMerge");
+feMerge.append("feMergeNode").attr("in", "blur");
+feMerge.append("feMergeNode").attr("in", "SourceGraphic");
+
+// Arrow markers per category
+Object.entries(CAT_COLOR).forEach(([cat, color]) => {
+  defs.append("marker")
+    .attr("id", `arrow-${cat}`)
+    .attr("viewBox", "0 -4 8 8")
+    .attr("refX", 8).attr("refY", 0)
+    .attr("markerWidth", 5).attr("markerHeight", 5)
+    .attr("orient", "auto")
+    .append("path")
+    .attr("d", "M0,-4L8,0L0,4")
+    .attr("fill", color)
+    .attr("opacity", 0.5);
+});
+
+const g = svg.append("g").attr("class", "graph-root");
+
+// ── zoom ──
+const zoom = d3.zoom()
+  .scaleExtent([0.08, 4])
+  .on("zoom", ev => g.attr("transform", ev.transform));
+svg.call(zoom).on("dblclick.zoom", null);
+
+// ═══════════════════════════════════════════════════════════════════
+// SIMULATION
+// ═══════════════════════════════════════════════════════════════════
+const nodes = GRAPH_DATA.nodes;
+const links = cleanEdges;
+
+const sim = d3.forceSimulation(nodes)
+  .force("link", d3.forceLink(links).id(d => d.id).distance(d => {
+    // longer links for high-degree nodes to spread them out
+    const r1 = nodeRadius(d.source), r2 = nodeRadius(d.target);
+    return 80 + r1 + r2 + Math.random() * 20;
+  }).strength(0.35))
+  .force("charge", d3.forceManyBody().strength(d => -320 - d.degree * 20).distanceMax(500))
+  .force("center", d3.forceCenter(W / 2, H / 2))
+  .force("collision", d3.forceCollide(d => nodeRadius(d) + 20))
+  .force("x", d3.forceX(W / 2).strength(0.04))
+  .force("y", d3.forceY(H / 2).strength(0.04))
+  .alphaDecay(0.018)
+  .velocityDecay(0.45);
+
+// ── Link elements ──
+const linkG = g.append("g").attr("class", "links");
+const linkEl = linkG.selectAll("line")
+  .data(links)
+  .join("line")
+  .attr("class", "link")
+  .attr("stroke", d => {
+    const src = typeof d.source === "object" ? d.source : nodeMap[d.source];
+    return nodeColor(src);
+  })
+  .attr("stroke-opacity", 0.28)
+  .attr("stroke-width", 1.2);
+
+// ── Node groups ──
+const nodeG = g.append("g").attr("class", "nodes");
+const nodeEl = nodeG.selectAll("g")
+  .data(nodes)
+  .join("g")
+  .attr("class", "node-group")
+  .style("cursor", "pointer")
+  .call(d3.drag()
+    .on("start", dragStart)
+    .on("drag",  dragged)
+    .on("end",   dragEnd));
+
+// outer glow ring (dim by default)
+nodeEl.append("circle")
+  .attr("class", "node-ring")
+  .attr("r", d => nodeRadius(d) + 5)
+  .attr("fill", "none")
+  .attr("stroke", d => nodeColor(d))
+  .attr("stroke-width", 1.5)
+  .attr("stroke-opacity", 0.0);
+
+// main circle
+nodeEl.append("circle")
+  .attr("class", "node-circle")
+  .attr("r", d => nodeRadius(d))
+  .attr("fill", d => nodeColor(d))
+  .attr("fill-opacity", 0.18)
+  .attr("stroke", d => nodeColor(d))
+  .attr("stroke-width", 1.8);
+
+// label
+nodeEl.append("text")
+  .attr("class", "node-label")
+  .attr("x", d => nodeRadius(d) + 6)
+  .attr("y", 0)
+  .attr("font-size", d => labelSize(d) + "px")
+  .text(d => d.id);
+
+// ── Tooltip ──
+const tooltip = document.getElementById("tooltip");
+const ttName  = document.getElementById("tt-name");
+const ttInfo  = document.getElementById("tt-info");
+
+nodeEl
+  .on("mouseover", (ev, d) => {
+    highlightNode(d);
+    ttName.textContent = d.id;
+    ttInfo.textContent = `${d.degree} connection${d.degree !== 1 ? "s" : ""} · ${CAT_LABEL[d.category]}`;
+    tooltip.classList.add("visible");
+  })
+  .on("mousemove", ev => {
+    tooltip.style.left = (ev.clientX + 14) + "px";
+    tooltip.style.top  = (ev.clientY - 10) + "px";
+  })
+  .on("mouseout", () => {
+    resetHighlight();
+    tooltip.classList.remove("visible");
+  })
+  .on("click", (ev, d) => {
+    ev.stopPropagation();
+    openSidebar(d);
+  });
+
+// ── Simulation tick ──
+sim.on("tick", () => {
+  linkEl
+    .attr("x1", d => d.source.x)
+    .attr("y1", d => d.source.y)
+    .attr("x2", d => d.target.x)
+    .attr("y2", d => d.target.y);
+
+  nodeEl.attr("transform", d => `translate(${d.x},${d.y})`);
+});
+
+// ── Auto-fit after settle ──
+sim.on("end", fitGraph);
+setTimeout(fitGraph, 3500);
+
+// ═══════════════════════════════════════════════════════════════════
+// HIGHLIGHT / RESET
+// ═══════════════════════════════════════════════════════════════════
+let highlighted = null;
+
+function highlightNode(d) {
+  highlighted = d.id;
+  const neighbors = d.neighbors;
+
+  nodeEl.each(function(n) {
+    const isCenter = n.id === d.id;
+    const isNeighbor = neighbors.has(n.id);
+    const dim = !isCenter && !isNeighbor;
+    d3.select(this).select(".node-circle")
+      .transition().duration(180)
+      .attr("fill-opacity", dim ? 0.05 : isCenter ? 0.35 : 0.2)
+      .attr("stroke-opacity", dim ? 0.15 : 1);
+    d3.select(this).select(".node-ring")
+      .transition().duration(180)
+      .attr("stroke-opacity", isCenter ? 0.55 : 0);
+    d3.select(this).select(".node-label")
+      .transition().duration(180)
+      .attr("opacity", dim ? 0.12 : 1);
+  });
+
+  linkEl.transition().duration(180)
+    .attr("stroke-opacity", l => {
+      const s = typeof l.source === "object" ? l.source.id : l.source;
+      const t = typeof l.target === "object" ? l.target.id : l.target;
+      const connected = s === d.id || t === d.id;
+      return connected ? 0.75 : 0.04;
+    })
+    .attr("stroke-width", l => {
+      const s = typeof l.source === "object" ? l.source.id : l.source;
+      const t = typeof l.target === "object" ? l.target.id : l.target;
+      return (s === d.id || t === d.id) ? 2 : 1;
+    });
+}
+
+function resetHighlight() {
+  highlighted = null;
+  nodeEl.each(function() {
+    d3.select(this).select(".node-circle")
+      .transition().duration(250)
+      .attr("fill-opacity", 0.18)
+      .attr("stroke-opacity", 1);
+    d3.select(this).select(".node-ring")
+      .transition().duration(250)
+      .attr("stroke-opacity", 0);
+    d3.select(this).select(".node-label")
+      .transition().duration(250)
+      .attr("opacity", 1);
+  });
+  linkEl.transition().duration(250)
+    .attr("stroke-opacity", 0.28)
+    .attr("stroke-width", 1.2);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DRAG
+// ═══════════════════════════════════════════════════════════════════
+function dragStart(ev, d) {
+  if (!ev.active) sim.alphaTarget(0.2).restart();
+  d.fx = d.x; d.fy = d.y;
+}
+function dragged(ev, d) {
+  d.fx = ev.x; d.fy = ev.y;
+}
+function dragEnd(ev, d) {
+  if (!ev.active) sim.alphaTarget(0);
+  d.fx = null; d.fy = null;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// SIDEBAR
+// ═══════════════════════════════════════════════════════════════════
+function openSidebar(d) {
+  document.getElementById("sidebar-title").textContent = d.id;
+  const color = nodeColor(d);
+  const dimColor = CAT_DIM[d.category];
+
+  const connList = [...d.neighbors].sort().map(nid => {
+    const n = nodeMap[nid];
+    if (!n) return "";
+    const c = nodeColor(n);
+    return `<span class="conn-chip"><span class="chip-dot" style="background:${c}"></span>${nid}</span>`;
+  }).join("");
+
+  document.getElementById("sidebar-body").innerHTML = `
+    <span class="sidebar-category" style="background:${dimColor};color:${color}">
+      ${CAT_LABEL[d.category]}
+    </span>
+    <div class="sidebar-section">
+      <h4>Definition</h4>
+      <p>${d.definition}</p>
+    </div>
+    <div class="sidebar-section">
+      <h4>Connections (${d.degree})</h4>
+      <div>${connList || '<span style="color:var(--muted);font-size:12px">No connections</span>'}</div>
+    </div>
+  `;
+  document.getElementById("sidebar").classList.add("open");
+  // Also highlight
+  resetHighlight();
+  highlightNode(d);
+}
+
+function closeSidebar() {
+  document.getElementById("sidebar").classList.remove("open");
+  resetHighlight();
+}
+
+svg.on("click", () => closeSidebar());
+
+// ═══════════════════════════════════════════════════════════════════
+// FIT GRAPH
+// ═══════════════════════════════════════════════════════════════════
+function fitGraph() {
+  const bounds = g.node().getBBox();
+  if (!bounds.width || !bounds.height) return;
+  const pad = 80;
+  const scale = Math.min(
+    (W - pad * 2) / bounds.width,
+    (H - pad * 2) / bounds.height,
+    1.0
+  );
+  const tx = W / 2 - scale * (bounds.x + bounds.width / 2);
+  const ty = H / 2 - scale * (bounds.y + bounds.height / 2);
+  svg.transition().duration(800)
+    .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ZOOM BUTTONS
+// ═══════════════════════════════════════════════════════════════════
+document.getElementById("btn-zoom-in").onclick  = () => svg.transition().duration(300).call(zoom.scaleBy, 1.4);
+document.getElementById("btn-zoom-out").onclick = () => svg.transition().duration(300).call(zoom.scaleBy, 0.72);
+document.getElementById("btn-zoom-fit").onclick = fitGraph;
+
+// ═══════════════════════════════════════════════════════════════════
+// SEARCH
+// ═══════════════════════════════════════════════════════════════════
+const searchInput = document.getElementById("search");
+const searchResults = document.getElementById("search-results");
+
+searchInput.addEventListener("input", () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) { searchResults.style.display = "none"; return; }
+  const matches = nodes.filter(n => n.id.toLowerCase().includes(q)).slice(0, 8);
+  if (!matches.length) { searchResults.style.display = "none"; return; }
+  searchResults.innerHTML = matches.map(n => `
+    <div class="search-result-item" data-id="${n.id}">
+      <span class="cat-dot" style="background:${nodeColor(n)}"></span>
+      ${n.id}
+    </div>
+  `).join("");
+  searchResults.style.display = "block";
+  searchResults.querySelectorAll(".search-result-item").forEach(el => {
+    el.addEventListener("click", () => {
+      const nid = el.dataset.id;
+      const node = nodeMap[nid];
+      if (!node) return;
+      searchInput.value = "";
+      searchResults.style.display = "none";
+      focusNode(node);
+    });
+  });
+});
+
+document.addEventListener("click", ev => {
+  if (!ev.target.closest("#search-wrap") && !ev.target.closest("#search-results")) {
+    searchResults.style.display = "none";
+  }
+});
+
+function focusNode(node) {
+  if (!node.x) return;
+  const currentTransform = d3.zoomTransform(svg.node());
+  const targetScale = Math.max(currentTransform.k, 1.2);
+  const tx = W / 2 - targetScale * node.x;
+  const ty = H / 2 - targetScale * node.y;
+  svg.transition().duration(700)
+    .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(targetScale))
+    .on("end", () => {
+      highlightNode(node);
+      openSidebar(node);
+    });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// RESIZE
+// ═══════════════════════════════════════════════════════════════════
+window.addEventListener("resize", () => {
+  const w = window.innerWidth, h = window.innerHeight;
+  svg.attr("viewBox", `0 0 ${w} ${h}`);
+  sim.force("center", d3.forceCenter(w / 2, h / 2));
+  sim.force("x", d3.forceX(w / 2).strength(0.04));
+  sim.force("y", d3.forceY(h / 2).strength(0.04));
+  sim.alpha(0.15).restart();
+});
+</script>
+</body>
+</html>

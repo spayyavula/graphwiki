@@ -1,0 +1,9 @@
+{
+  "name": "graphwiki",
+  "version": "1.0.0",
+  "description": "LLM-wiki for learning ontologies with interactive graph visualization",
+  "scripts": {
+    "graph": "node scripts/generate-graph.js",
+    "graph:watch": "node scripts/generate-graph.js --watch"
+  }
+}
