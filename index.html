@@ -1260,8 +1260,8 @@ const linkEl = linkG.selectAll("line")
     const src = typeof d.source === "object" ? d.source : nodeMap[d.source];
     return nodeColor(src);
   })
-  .attr("stroke-opacity", 0.28)
-  .attr("stroke-width", 1.2);
+  .attr("stroke-opacity", 0.45)
+  .attr("stroke-width", 1.5);
 
 // ── Node groups ──
 const nodeG = g.append("g").attr("class", "nodes");
