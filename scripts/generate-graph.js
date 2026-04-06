@@ -216,7 +216,10 @@ function serializeGraph(graph) {
     if (!bucket || bucket.length === 0) continue;
     out += `    // ── ${cat} ──\n`;
     for (const n of bucket) {
-      out += `    { id: ${JSON.stringify(n.id)}, category: ${JSON.stringify(n.category)}, definition: ${JSON.stringify(n.definition || '')}, content: ${JSON.stringify(n.content || '')} },\n`;
+      // Escape </ inside strings to prevent browser from prematurely closing <script>
+      const safeDef = JSON.stringify(n.definition || '').replace(/<\//g, '<\\/');
+      const safeCon = JSON.stringify(n.content || '').replace(/<\//g, '<\\/');
+      out += `    { id: ${JSON.stringify(n.id)}, category: ${JSON.stringify(n.category)}, definition: ${safeDef}, content: ${safeCon} },\n`;
     }
   }
 
