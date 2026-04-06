@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "name": "Ontology Learning Wiki",
+  "sources": [
+    { "path": "sources/", "exclude": ["wiki/"] }
+  ],
+  "output": "wiki/",
+  "mode": "staging",
+  "topic_hints": [
+    "ontology",
+    "RDF",
+    "OWL",
+    "knowledge-graph",
+    "description-logic",
+    "SPARQL",
+    "semantic-web",
+    "reasoning",
+    "SHACL"
+  ],
+  "link_style": "obsidian"
+}
