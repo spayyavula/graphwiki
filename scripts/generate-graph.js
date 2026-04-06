@@ -110,7 +110,7 @@ function extractWikilinks(text) {
 // ═══════════════════════════════════════════════════════════════════
 
 function buildGraph() {
-  const nodes = [];       // { id, category }
+  const nodes = [];       // { id, category, definition, content }
   const nodeSet = new Set();
 
   // 1. Discover nodes — one per .md file (skip index.md)
@@ -122,7 +122,11 @@ function buildGraph() {
       const stem = entry.name.slice(0, -3); // remove .md
       if (stem === 'index') continue;
       const name = stemToName(stem);
-      nodes.push({ id: name, category });
+      const filePath = path.join(catDir, entry.name);
+      const text = fs.readFileSync(filePath, 'utf8');
+      const defMatch = text.match(/\*\*Definition:\*\*\s*(.+)/);
+      const definition = defMatch ? defMatch[1].trim() : '';
+      nodes.push({ id: name, category, definition, content: text });
       nodeSet.add(name);
     }
   }
@@ -161,11 +165,13 @@ function buildGraph() {
     // Unknown category — add as node with category = parent folder name
     const category  = relParts[0] || 'other';
     const name      = stemToName(stem);
+    const text  = fs.readFileSync(filePath, 'utf8');
     if (!nodeSet.has(name)) {
-      nodes.push({ id: name, category });
+      const defMatch = text.match(/\*\*Definition:\*\*\s*(.+)/);
+      const definition = defMatch ? defMatch[1].trim() : '';
+      nodes.push({ id: name, category, definition, content: text });
       nodeSet.add(name);
     }
-    const text  = fs.readFileSync(filePath, 'utf8');
     const links = extractWikilinks(text);
     for (const link of links) {
       const target = normalizeLinkTarget(link);
@@ -210,7 +216,7 @@ function serializeGraph(graph) {
     if (!bucket || bucket.length === 0) continue;
     out += `    // ── ${cat} ──\n`;
     for (const n of bucket) {
-      out += `    { id: ${JSON.stringify(n.id)}, category: ${JSON.stringify(n.category)} },\n`;
+      out += `    { id: ${JSON.stringify(n.id)}, category: ${JSON.stringify(n.category)}, definition: ${JSON.stringify(n.definition || '')}, content: ${JSON.stringify(n.content || '')} },\n`;
     }
   }
 
