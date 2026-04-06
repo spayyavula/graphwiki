@@ -71,6 +71,41 @@ function normalizeLinkTarget(target) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
+// RELATIONSHIP LABEL NORMALIZATION
+// ═══════════════════════════════════════════════════════════════════
+
+// Priority order for deduplication (lower index = higher priority)
+const LABEL_PRIORITY = ['is-a', 'has-part', 'built-on', 'imports', 'used-by', 'extends', 'related', 'see-also'];
+
+/**
+ * Normalize a raw relationship label string to a canonical short label.
+ */
+function normalizeLabel(raw) {
+  // Strip trailing colon and whitespace before comparing
+  const s = raw.trim().replace(/:$/, '').trim().toLowerCase();
+  if (s === 'is-a' || s === 'is a') return 'is-a';
+  if (s === 'has-part' || s === 'has part') return 'has-part';
+  if (s === 'related' || s === 'related to') return 'related';
+  if (s === 'used-by' || s === 'used by') return 'used-by';
+  if (s === 'built on' || s === 'built-on') return 'built-on';
+  if (s === 'imports' || s === 'imports from') return 'imports';
+  if (s === 'extends') return 'extends';
+  if (s === 'see also' || s === 'see-also') return 'see-also';
+  return 'related';
+}
+
+/**
+ * Return the higher-priority label between two labels.
+ */
+function higherPriorityLabel(a, b) {
+  const pi = LABEL_PRIORITY.indexOf(a);
+  const qi = LABEL_PRIORITY.indexOf(b);
+  const pi2 = pi === -1 ? LABEL_PRIORITY.length : pi;
+  const qi2 = qi === -1 ? LABEL_PRIORITY.length : qi;
+  return pi2 <= qi2 ? a : b;
+}
+
+// ═══════════════════════════════════════════════════════════════════
 // MARKDOWN SCANNING
 // ═══════════════════════════════════════════════════════════════════
 
@@ -105,6 +140,89 @@ function extractWikilinks(text) {
   return targets;
 }
 
+/**
+ * Extract typed edges from a markdown file's content.
+ * Returns an array of { target, label } objects.
+ *
+ * - ## Relationships section: parses "- **Label:** [[T1]], [[T2]]" lines
+ * - ## See Also section: label = "see-also"
+ * - All other wikilinks in the body: label = "related"
+ */
+function extractTypedEdges(text) {
+  const WIKILINK_RE = /\[\[([^\]|]+)(?:\|[^\]]*)?\]\]/g;
+  const results = []; // { target, label }
+
+  // Split into lines and track which section we are in
+  const lines = text.split('\n');
+  let section = 'body'; // 'body' | 'relationships' | 'see-also'
+
+  // Track character offsets consumed by Relationships / See Also lines
+  // so we can exclude them from the body scan
+  const sectionLineIndices = new Set();
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const headingMatch = line.match(/^##\s+(.+)/);
+    if (headingMatch) {
+      const heading = headingMatch[1].trim().toLowerCase();
+      if (heading === 'relationships') {
+        section = 'relationships';
+      } else if (heading === 'see also') {
+        section = 'see-also';
+      } else {
+        section = 'body';
+      }
+      sectionLineIndices.add(i);
+      continue;
+    }
+
+    if (section === 'relationships') {
+      // Match "- **Label:** [[T1]], [[T2]], ..."
+      const relMatch = line.match(/^\s*-\s+\*\*([^*]+)\*\*:?\s*(.*)/);
+      if (relMatch) {
+        const label = normalizeLabel(relMatch[1]);
+        const rest  = relMatch[2];
+        let m;
+        WIKILINK_RE.lastIndex = 0;
+        while ((m = WIKILINK_RE.exec(rest)) !== null) {
+          results.push({ target: m[1].trim(), label });
+        }
+        sectionLineIndices.add(i);
+      } else if (/^\s*$/.test(line)) {
+        // blank line — stay in section
+        sectionLineIndices.add(i);
+      } else if (/^\s*-/.test(line)) {
+        // bullet without bold label — treat as "related"
+        WIKILINK_RE.lastIndex = 0;
+        let m;
+        while ((m = WIKILINK_RE.exec(line)) !== null) {
+          results.push({ target: m[1].trim(), label: 'related' });
+        }
+        sectionLineIndices.add(i);
+      }
+    } else if (section === 'see-also') {
+      WIKILINK_RE.lastIndex = 0;
+      let m;
+      while ((m = WIKILINK_RE.exec(line)) !== null) {
+        results.push({ target: m[1].trim(), label: 'see-also' });
+      }
+      sectionLineIndices.add(i);
+    }
+  }
+
+  // Body wikilinks — any line NOT already consumed by a special section
+  for (let i = 0; i < lines.length; i++) {
+    if (sectionLineIndices.has(i)) continue;
+    WIKILINK_RE.lastIndex = 0;
+    let m;
+    while ((m = WIKILINK_RE.exec(lines[i])) !== null) {
+      results.push({ target: m[1].trim(), label: 'related' });
+    }
+  }
+
+  return results;
+}
+
 // ═══════════════════════════════════════════════════════════════════
 // GRAPH BUILDER
 // ═══════════════════════════════════════════════════════════════════
@@ -131,7 +249,7 @@ function buildGraph() {
     }
   }
 
-  // 2. Discover edges — parse wikilinks from every .md file
+  // 2. Discover edges — parse typed wikilinks from every .md file
   const rawEdges = [];
 
   for (const category of CATEGORIES) {
@@ -144,11 +262,11 @@ function buildGraph() {
       const sourceName = stemToName(stem);
       const filePath   = path.join(catDir, entry.name);
       const text       = fs.readFileSync(filePath, 'utf8');
-      const links      = extractWikilinks(text);
-      for (const link of links) {
-        const target = normalizeLinkTarget(link);
+      const typedEdges = extractTypedEdges(text);
+      for (const { target: rawTarget, label } of typedEdges) {
+        const target = normalizeLinkTarget(rawTarget);
         if (target !== sourceName && nodeSet.has(target)) {
-          rawEdges.push({ source: sourceName, target });
+          rawEdges.push({ source: sourceName, target, label });
         }
       }
     }
@@ -172,27 +290,33 @@ function buildGraph() {
       nodes.push({ id: name, category, definition, content: text });
       nodeSet.add(name);
     }
-    const links = extractWikilinks(text);
-    for (const link of links) {
-      const target = normalizeLinkTarget(link);
+    const typedEdges = extractTypedEdges(text);
+    for (const { target: rawTarget, label } of typedEdges) {
+      const target = normalizeLinkTarget(rawTarget);
       if (target !== name && nodeSet.has(target)) {
-        rawEdges.push({ source: name, target });
+        rawEdges.push({ source: name, target, label });
       }
     }
   }
 
   // 4. Deduplicate edges (undirected — treat A→B and B→A as same)
-  const edgeSet  = new Set();
-  const edges    = [];
+  // Keep the most specific (highest-priority) label when duplicates exist.
+  const edgeMap  = new Map(); // key → { source, target, label }
   for (const e of rawEdges) {
     const a   = e.source < e.target ? e.source : e.target;
     const b   = e.source < e.target ? e.target : e.source;
     const key = `${a}|||${b}`;
-    if (!edgeSet.has(key)) {
-      edgeSet.add(key);
-      edges.push({ source: e.source, target: e.target });
+    if (!edgeMap.has(key)) {
+      edgeMap.set(key, { source: e.source, target: e.target, label: e.label });
+    } else {
+      const existing = edgeMap.get(key);
+      const best = higherPriorityLabel(existing.label, e.label);
+      if (best !== existing.label) {
+        edgeMap.set(key, { source: e.source, target: e.target, label: best });
+      }
     }
   }
+  const edges = Array.from(edgeMap.values());
 
   return { nodes, edges };
 }
@@ -232,7 +356,8 @@ function serializeGraph(graph) {
       out += `    // ${e.source} → ...\n`;
       lastSource = e.source;
     }
-    out += `    { source: ${JSON.stringify(e.source)}, target: ${JSON.stringify(e.target)} },\n`;
+    const safeLabel = JSON.stringify(e.label || 'related').replace(/<\//g, '<\\/');
+    out += `    { source: ${JSON.stringify(e.source)}, target: ${JSON.stringify(e.target)}, label: ${safeLabel} },\n`;
   }
 
   out += '  ]\n};';
