@@ -7,7 +7,7 @@ const path = require('path');
 // CONFIGURATION
 // ═══════════════════════════════════════════════════════════════════
 const WIKI_DIR      = path.join(__dirname, '..', 'wiki');
-const HTML_FILE     = path.join(__dirname, '..', 'wiki-graph.html');
+const HTML_FILE     = path.join(__dirname, '..', 'index.html');
 const WATCH_FLAG    = process.argv.includes('--watch');
 const DEBOUNCE_MS   = 500;
 
@@ -245,7 +245,7 @@ function injectGraphData(html, newDataJs) {
   const startMarker = 'const GRAPH_DATA = {';
   const startIdx    = html.indexOf(startMarker);
   if (startIdx === -1) {
-    throw new Error('Could not find "const GRAPH_DATA = {" in wiki-graph.html');
+    throw new Error('Could not find "const GRAPH_DATA = {" in index.html');
   }
 
   // Find the matching closing `};` — we look for it after the opening brace
@@ -266,7 +266,7 @@ function injectGraphData(html, newDataJs) {
   }
 
   if (endIdx === -1) {
-    throw new Error('Could not find end of GRAPH_DATA block in wiki-graph.html');
+    throw new Error('Could not find end of GRAPH_DATA block in index.html');
   }
 
   return html.slice(0, startIdx) + newDataJs + html.slice(endIdx);
@@ -290,7 +290,7 @@ function generate() {
   fs.writeFileSync(HTML_FILE, newHtml, 'utf8');
 
   const ts = new Date().toLocaleTimeString();
-  console.log(`[${ts}] Generated wiki-graph.html: ${graph.nodes.length} nodes, ${graph.edges.length} edges`);
+  console.log(`[${ts}] Generated index.html: ${graph.nodes.length} nodes, ${graph.edges.length} edges`);
 }
 
 // ═══════════════════════════════════════════════════════════════════
