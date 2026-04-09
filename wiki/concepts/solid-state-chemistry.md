@@ -11,7 +11,7 @@ Solid-state chemistry focuses on how atoms and ions are arranged in solids and h
 
 The field is especially useful for GraphWiki because it provides a chemistry-centered bridge into [[Materials Science]]. Materials science tends to ask broader structure-property and processing questions across many material classes. Solid-state chemistry narrows the focus to the chemical logic of solids: how lattices form, how defects influence behavior, and how composition and bonding shape stability and functionality.
 
-It also connects directly to [[Phase Diagram]] and [[Phase Transition]] reasoning. Many practical questions about synthesis, phase purity, and structure control in solids depend on thermodynamic stability and kinetic accessibility. That makes solid-state chemistry a natural cross-link between chemistry-oriented learning and the broader materials branch.
+It also connects directly to [[Phase Diagram]] and [[Phase Transition]] reasoning. Many practical questions about synthesis, phase purity, and structure control in solids depend on thermodynamic stability and kinetic accessibility. That makes solid-state chemistry a natural cross-link between chemistry-oriented learning, [[Condensed Matter Physics]], and the broader materials branch.
 
 ## Key Properties
 
@@ -25,7 +25,7 @@ It also connects directly to [[Phase Diagram]] and [[Phase Transition]] reasonin
 
 - **Is-a:** Chemistry-oriented study of materials and solids
 - **Has-part:** Crystal structure, bonding, defects, composition, lattice behavior
-- **Related:** [[Materials Science]], [[Phase Diagram]], [[Phase Transition]], [[Thermodynamics]]
+- **Related:** [[Materials Science]], [[Condensed Matter Physics]], [[Phase Diagram]], [[Phase Transition]], [[Thermodynamics]]
 - **Used-by:** Inorganic materials research, semiconductor chemistry, ceramic science, synthesis and characterization workflows
 
 ## Examples
@@ -41,6 +41,7 @@ It also connects directly to [[Phase Diagram]] and [[Phase Transition]] reasonin
 ## See Also
 
 - [[Materials Science]]
+- [[Condensed Matter Physics]]
 - [[Phase Diagram]]
 - [[Phase Transition]]
 - [[Materials Science vs Solid State Chemistry]]

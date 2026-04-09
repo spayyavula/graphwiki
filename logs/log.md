@@ -123,3 +123,15 @@
 - Created 3 new entity pages: MIT OpenCourseWare, Princeton Combustion Energy Frontier Research Center, and UC Berkeley Computational Solid Mechanics Lab
 - Created 1 new comparison page: Phase Diagram vs Phase Transition
 - Updated `wiki/index.md` and the science topic cores so the newer branches now include source-backed institutions and a tighter phase-behavior comparison
+
+## [2026-04-09] ingest | Reframed Materials Science around a stronger physics-facing angle
+
+- Expanded `wiki/concepts/materials-science.md` so the branch now foregrounds structure, defects, vibrations, elasticity, phase behavior, and other physics-facing ideas alongside chemistry and engineering
+- Updated `Getting Started with Materials Science` to explicitly route learners through both the chemistry view and the physics-and-structure view of the field
+- Updated `Materials Science Academic Source Guide` so the source map more clearly supports the mechanics-facing and structure-based perspective already present in the repository's university source pack
+
+## [2026-04-09] ingest | Added condensed-matter framing to the Materials Science branch
+
+- Created `wiki/concepts/condensed-matter-physics.md` to make the physics-oriented view of materials explicit inside the wiki graph
+- Created `wiki/comparisons/materials-science-vs-condensed-matter-physics.md` to distinguish the broader materials field from the physics-centered condensed-matter perspective
+- Updated the materials branch guides, cross-links, and index so the new node is surfaced as part of the Materials Science learning path rather than left implicit

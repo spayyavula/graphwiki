@@ -55,6 +55,7 @@
 
 ## Materials Science Concepts
 - [[Materials Science]] — The study of how structure, bonding, processing, and energetics shape material behavior
+- [[Condensed Matter Physics]] — The physics of collective behavior, structure, excitations, and transformations in material systems
 - [[Phase Diagram]] — A compact representation of stability regions and phase behavior across conditions
 - [[Phase Transition]] — A transformation between material phases driven by changing thermodynamic conditions
 - [[Solid State Chemistry]] — The chemistry of solids, structures, bonding, and composition-property relationships
@@ -106,6 +107,7 @@
 - [[Carbon Cycle vs Carbon Capture and Storage]] — Natural carbon-system dynamics vs engineered intervention
 - [[Thermodynamics vs Kinetics]] — Whether change is favored vs how fast it proceeds
 - [[Materials Science vs Solid-State Chemistry]] — Broad structure-property engineering field vs chemistry-focused study of solids
+- [[Materials Science vs Condensed Matter Physics]] — Broad materials field vs the physics-centered study of collective behavior in matter
 - [[Phase Diagram vs Phase Transition]] — Stability-map representation vs the actual transformation process
 
 ## Guides
@@ -126,4 +128,4 @@
 
 ---
 
-**Coverage summary:** 40 concept pages | 24 entity pages | 14 guides | 11 comparisons = **89 pages total** (excl. index)
+**Coverage summary:** 41 concept pages | 24 entity pages | 14 guides | 12 comparisons = **91 pages total** (excl. index)
