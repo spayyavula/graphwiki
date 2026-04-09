@@ -1,7 +1,7 @@
 {
-  "name": "Ontology Wiki Knowledge Graph",
-  "short_name": "Ontology Wiki",
-  "description": "Interactive ontology and financial knowledge graph explorer.",
+  "name": "GraphWiki",
+  "short_name": "GraphWiki",
+  "description": "Graph-based LLM wiki for exploring connected topics across ontologies, finance, science, and other knowledge domains.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
