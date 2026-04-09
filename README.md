@@ -195,6 +195,57 @@ GraphWiki is intended to support multiple domain graphs behind a common interfac
 
 In this repo state, only the ontology-focused graph is active. Restoring full topic switching would require separate graph datasets and a manifest-driven topic loader similar to the older deployed interface.
 
+## How to Add a New Topic Graph
+
+If you want GraphWiki to support a new domain such as carbon science or algorithmic trading, the clean path is to treat each topic as its own wiki dataset and generated graph.
+
+### Minimum workflow
+
+1. Create or curate raw sources for the topic under `sources/`.
+2. Generate topic-specific wiki pages under a dedicated wiki area or branch of content.
+3. Run the graph compiler to produce a graph dataset for that topic.
+4. Store that dataset as a separate JSON payload rather than embedding every topic into one monolithic `index.html`.
+5. Add the topic to a manifest that the UI can load dynamically.
+6. Re-enable the topic selector so it switches datasets instead of just showing product direction.
+
+### Recommended file model
+
+One practical structure would be:
+
+```text
+data/
+├── manifest.json
+├── learning-ontology.json
+├── financial-ontology.json
+├── algo-trading.json
+├── carbon-science.json
+├── materials-science.json
+└── thermodynamics.json
+```
+
+Where `manifest.json` maps topic keys to display names and optional metadata such as:
+
+- title
+- description
+- dataset path
+- theme or accent color
+
+### Suggested implementation approach
+
+1. Refactor the current graph compiler so it can emit JSON graph files, not just patch embedded data into `index.html`.
+2. Keep the front-end app generic so it loads a selected dataset and renders it with the same D3 code.
+3. Use one shared UI shell for search, graph controls, sidebar, theme toggle, and SEO defaults.
+4. Override page title, description, and structured data per topic when a dataset is loaded.
+
+### Why this matters
+
+This separation keeps GraphWiki scalable:
+
+- each topic can evolve independently
+- the front-end stays stable
+- deploys remain static and simple
+- SEO can target both the GraphWiki product and individual topic graphs
+
 ## SEO and Product Positioning
 
 The site is now branded for search and sharing as GraphWiki, not just as a single ontology graph.
