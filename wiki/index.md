@@ -48,6 +48,24 @@
 - [[Carbon Capture and Storage]] — Technologies and systems for capturing and storing CO2 emissions
 - [[Carbon Allotrope]] — Distinct structural forms of carbon such as diamond, graphite, and graphene
 
+## Thermodynamics Concepts
+- [[Thermodynamics]] — The framework for energy, entropy, equilibrium, and spontaneous change
+- [[Entropy]] — A state function central to spontaneity, irreversibility, and equilibrium analysis
+- [[Kinetics]] — The study of how fast physical and chemical processes occur and what controls their rates
+
+## Materials Science Concepts
+- [[Materials Science]] — The study of how structure, bonding, processing, and energetics shape material behavior
+- [[Phase Diagram]] — A compact representation of stability regions and phase behavior across conditions
+- [[Phase Transition]] — A transformation between material phases driven by changing thermodynamic conditions
+- [[Solid State Chemistry]] — The chemistry of solids, structures, bonding, and composition-property relationships
+
+## Topic Entities
+- [[UCAR]] — Earth-system research organization relevant to carbon-cycle science planning and coordination
+- [[FIX Trading Community]] — Industry consortium governing the FIX messaging standard used in electronic trading
+- [[MIT OpenCourseWare]] — Major open course platform anchoring the thermodynamics and materials source branches
+- [[Princeton Combustion Energy Frontier Research Center]] — Research center supporting the applied thermodynamics branch
+- [[UC Berkeley Computational Solid Mechanics Lab]] — Berkeley lab connecting materials behavior to continuum mechanics
+
 ## Standards & Ontologies
 - [[FIBO]] — Financial Industry Business Ontology (2,436 OWL classes)
 - [[ISO 20022]] — Universal financial messaging with official OWL DL ontology
@@ -84,6 +102,11 @@
 - [[FIBO vs Schema.org Financial]] — Full financial ontology vs lightweight web vocabulary
 - [[FpML vs FIX vs ISO 20022]] — Three major financial messaging standards
 - [[Financial Identifier Comparison]] — ISIN vs CUSIP vs SEDOL vs FIGI vs LEI vs MIC
+- [[Algorithmic Trading vs High-Frequency Trading]] — Broad automated execution and strategy workflows vs latency-dominated trading
+- [[Carbon Cycle vs Carbon Capture and Storage]] — Natural carbon-system dynamics vs engineered intervention
+- [[Thermodynamics vs Kinetics]] — Whether change is favored vs how fast it proceeds
+- [[Materials Science vs Solid-State Chemistry]] — Broad structure-property engineering field vs chemistry-focused study of solids
+- [[Phase Diagram vs Phase Transition]] — Stability-map representation vs the actual transformation process
 
 ## Guides
 - [[Getting Started with Ontologies]] — Beginner's learning path and first exercises
@@ -98,7 +121,9 @@
 - [[Algo Trading Academic Source Guide]] — Starter source map for execution algorithms, order books, and trading microstructure
 - [[Getting Started with Carbon Science]] — Beginner's path through carbon cycle, CCS, and carbon materials
 - [[Getting Started with Algo Trading]] — Beginner's path through execution, order books, and trading infrastructure
+- [[Getting Started with Thermodynamics]] — Beginner's path through energy, entropy, equilibrium, and kinetics
+- [[Getting Started with Materials Science]] — Beginner's path through structure, phase behavior, and solid-state reasoning
 
 ---
 
-**Coverage summary:** 33 concept pages | 19 entity pages | 12 guides | 6 comparisons = **70 pages total** (excl. index)
+**Coverage summary:** 40 concept pages | 24 entity pages | 14 guides | 11 comparisons = **89 pages total** (excl. index)

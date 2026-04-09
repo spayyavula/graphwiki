@@ -89,3 +89,37 @@
 - Created 2 new guide pages: Getting Started with Carbon Science, Getting Started with Algo Trading
 - Updated `wiki/index.md` with new topic sections and guide links
 - These pages establish the first real wiki layer for Carbon Science and Algo Trading and make both topics visible in the generated graph, but they still need more entities and comparisons before they are ready as full selector datasets
+
+## [2026-04-08] ingest+ui | Added topic entities/comparisons and promoted Carbon/Algo into selector views
+
+- Created 2 new entity pages: UCAR and FIX Trading Community
+- Created 2 new comparison pages: Algorithmic Trading vs High-Frequency Trading and Carbon Cycle vs Carbon Capture and Storage
+- Updated `wiki/index.md` with the new entity and comparison entries and refreshed coverage totals
+- Extended the GraphWiki topic selector so Carbon Science and Algo Trading render as focused subgraphs instead of only appearing inside the full graph
+- This batch gives both newer branches enough structure to browse as distinct topic views, though more entities and concept depth are still needed before Thermodynamics and Materials Science can be promoted the same way
+
+## [2026-04-08] ingest+ui | Added first Thermodynamics and Materials Science concepts and promoted both topics into selector views
+
+- Created 4 new concept pages: Thermodynamics, Entropy, Materials Science, and Phase Diagram
+- Updated `wiki/index.md` with dedicated Thermodynamics and Materials Science concept sections and refreshed coverage totals
+- Extended the GraphWiki topic selector so Thermodynamics and Materials Science now render as focused subgraphs alongside the existing four topic views
+- This batch completes the first-pass selector coverage for all six planned GraphWiki topics, though both branches still need deeper entity and comparison coverage
+
+## [2026-04-08] ingest | Added bridge concepts and comparisons for Thermodynamics and Materials Science
+
+- Created 3 new concept pages: Kinetics, Phase Transition, and Solid State Chemistry
+- Created 2 new comparison pages: Thermodynamics vs Kinetics and Materials Science vs Solid State Chemistry
+- Updated `wiki/index.md` and the selector-backed topic cores so the Thermodynamics and Materials Science branches have stronger internal structure
+- This batch makes both newer science branches feel less like source-guide placeholders and more like real learning graphs
+
+## [2026-04-08] guide+ui | Added starter guides for Thermodynamics and Materials Science
+
+- Created 2 new guide pages: Getting Started with Thermodynamics and Getting Started with Materials Science
+- Updated `wiki/index.md` and the science topic cores so both branches have dedicated learner-facing entry paths
+- Tightened focused graph expansion so adjacent concepts can enrich a topic view, while comparisons, guides, and entities appear only when deliberately included in that topic's core set
+
+## [2026-04-08] ingest | Added first Thermodynamics and Materials Science entity pages
+
+- Created 3 new entity pages: MIT OpenCourseWare, Princeton Combustion Energy Frontier Research Center, and UC Berkeley Computational Solid Mechanics Lab
+- Created 1 new comparison page: Phase Diagram vs Phase Transition
+- Updated `wiki/index.md` and the science topic cores so the newer branches now include source-backed institutions and a tighter phase-behavior comparison

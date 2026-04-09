@@ -24,6 +24,8 @@ const SPECIAL_NAMES = {
   'uri-and-iri': 'URI and IRI',
   'w3c':         'W3C',
   'dbpedia':     'DBpedia',
+  'ucar':        'UCAR',
+  'fix-trading-community': 'FIX Trading Community',
 };
 
 // Special-case individual word tokens (applied when stem is not found above)
@@ -34,6 +36,8 @@ const SPECIAL_WORDS = {
   'sparql': 'SPARQL',
   'shacl':  'SHACL',
   'w3c':    'W3C',
+  'ucar':   'UCAR',
+  'fix':    'FIX',
 };
 
 // Small words that stay lowercase (unless they are the first word)
