@@ -39,6 +39,19 @@
 
 ## Algo Trading Concepts
 - [[Algorithmic Trading]] — Computer-driven trade generation and execution in electronic markets
+- [[Trading Data and Analysis]] — Turning raw market and reference data into research-ready trading inputs
+- [[Strategy Research]] — Designing and formalizing hypotheses, signals, and trading rules
+- [[Time Series Analysis in Trading]] — Using temporal structure in prices, returns, and volatility to design trading signals
+- [[Pairs Trading]] — Relative-value trading built around divergence and convergence between related assets
+- [[Options Trading]] — Strategy design with nonlinear derivative payoffs, volatility, and expiry structure
+- [[Futures Trading]] — Systematic trading with standardized exchange-traded contracts across asset classes
+- [[Machine Learning in Trading]] — Applying data-driven models to classification, ranking, and decision problems in trading
+- [[LLM in Trading]] — Using large language models for extraction, research support, and AI-assisted trading workflows
+- [[Backtesting]] — Simulating strategies on historical data with realistic assumptions
+- [[Portfolio and Risk Management]] — Converting trade ideas into controlled capital allocation and exposure limits
+- [[Execution Strategies]] — Implementing trades while controlling cost, impact, and routing quality
+- [[Live Trading]] — Running production trading systems under real data and risk constraints
+- [[Performance Evaluation]] — Judging trading results using return, cost, and risk-aware metrics
 - [[Market Microstructure]] — How trading rules and information flow shape prices and execution
 - [[Limit Order Book]] — The queue-based structure through which many markets match orders
 - [[High-Frequency Trading]] — Ultra-low-latency trading in modern electronic markets
@@ -126,11 +139,12 @@
 - [[Materials Science Academic Source Guide]] — University-hosted source map for structure, phase behavior, and materials thermodynamics
 - [[Carbon Science Academic Source Guide]] — Starter source map for carbon-cycle science, carbon capture, and carbon materials
 - [[Algo Trading Academic Source Guide]] — Starter source map for execution algorithms, order books, and trading microstructure
+- [[Algo Trading Roadmap]] — QuantInsti- and Quantra-inspired staged learning map for the broader algo-trading workflow
 - [[Getting Started with Carbon Science]] — Beginner's path through carbon cycle, CCS, and carbon materials
-- [[Getting Started with Algo Trading]] — Beginner's path through execution, order books, and trading infrastructure
+- [[Getting Started with Algo Trading]] — Beginner's path through data, research, simulation, execution, and trading infrastructure
 - [[Getting Started with Thermodynamics]] — Beginner's path through energy, entropy, equilibrium, and kinetics
 - [[Getting Started with Materials Science]] — Beginner's path through structure, phase behavior, and solid-state reasoning
 
 ---
 
-**Coverage summary:** 45 concept pages | 24 entity pages | 14 guides | 13 comparisons = **96 pages total** (excl. index)
+**Coverage summary:** 58 concept pages | 24 entity pages | 15 guides | 13 comparisons = **110 pages total** (excl. index)

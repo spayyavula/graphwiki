@@ -153,3 +153,14 @@
 - Created `wiki/concepts/equilibrium-constant.md` to make the chemistry-facing equilibrium quantity explicit in the Thermodynamics branch
 - Updated the thermodynamics, chemical-thermodynamics, Gibbs free energy, and chemical potential pages to connect equilibrium composition with free-energy reasoning
 - Updated the thermodynamics guide, source guide, index, and focused topic metadata so the branch now surfaces equilibrium constants directly
+
+## [2026-04-09] ingest | Reframed Algo Trading around the QuantInsti and Quantra roadmap
+
+- Created 7 new concept pages: `Trading Data and Analysis`, `Strategy Research`, `Backtesting`, `Portfolio and Risk Management`, `Execution Strategies`, `Live Trading`, and `Performance Evaluation`
+- Created `wiki/guides/algo-trading-roadmap.md` to adapt the QuantInsti/Quantra GitHub Algo Trading Map into GraphWiki's staged learning structure
+- Updated the Algo Trading concept, starter guide, source guide, index, and focused topic metadata so the branch now spans data, research, risk, simulation, execution, production, and evaluation rather than only microstructure and HFT
+
+## [2026-04-09] ingest | Added concrete strategy-family branches to Algo Trading
+
+- Created 6 new concept pages: `Time Series Analysis in Trading`, `Pairs Trading`, `Options Trading`, `Futures Trading`, `Machine Learning in Trading`, and `LLM in Trading`
+- Updated `Strategy Research`, the roadmap guide, the starter guide, the wiki index, and the Algo Trading focused-topic metadata so learners can move from the high-level research stage into concrete strategy families
