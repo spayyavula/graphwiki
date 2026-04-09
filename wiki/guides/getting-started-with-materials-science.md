@@ -40,7 +40,7 @@ Return to [[Thermodynamics]], [[Entropy]], and [[Kinetics]] to understand why a 
 
 ## Step 6: Use the Source Guide to Go Deeper
 
-After the core pages, use [[Materials Science Academic Source Guide]] to branch toward structure of materials, thermodynamics of materials, phase behavior, solid-state chemistry, or the mechanics-facing side of the field.
+After the core pages, use [[Materials Science Academic Source Guide]] to branch toward structure of materials, thermodynamics of materials, phase behavior, solid-state chemistry, the mechanics-facing side of the field, or electronic-materials examples such as [[Graphene in Semiconductors]].
 
 ## Sources
 
@@ -55,5 +55,6 @@ After the core pages, use [[Materials Science Academic Source Guide]] to branch 
 - [[Phase Transition]]
 - [[Thermodynamics]]
 - [[Kinetics]]
+- [[Graphene in Semiconductors]]
 - [[UC Berkeley Computational Solid Mechanics Lab]]
 - [[Materials Science Academic Source Guide]]

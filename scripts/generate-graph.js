@@ -35,6 +35,7 @@ const SPECIAL_WORDS = {
   'rdfs':   'RDFS',
   'sparql': 'SPARQL',
   'shacl':  'SHACL',
+  'dna':    'DNA',
   'w3c':    'W3C',
   'ucar':   'UCAR',
   'fix':    'FIX',

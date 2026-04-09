@@ -41,11 +41,15 @@
 - [[Algorithmic Trading]] — Computer-driven trade generation and execution in electronic markets
 - [[Trading Data and Analysis]] — Turning raw market and reference data into research-ready trading inputs
 - [[Strategy Research]] — Designing and formalizing hypotheses, signals, and trading rules
+- [[Technical Indicators]] — Computed price, volume, and volatility signals used to formalize trading ideas
+- [[Trend Following]] — Systematic trading aimed at capturing persistent directional movement
+- [[Mean Reversion]] — Trading temporary deviations back toward typical levels or relationships
 - [[Time Series Analysis in Trading]] — Using temporal structure in prices, returns, and volatility to design trading signals
 - [[Pairs Trading]] — Relative-value trading built around divergence and convergence between related assets
 - [[Options Trading]] — Strategy design with nonlinear derivative payoffs, volatility, and expiry structure
 - [[Futures Trading]] — Systematic trading with standardized exchange-traded contracts across asset classes
 - [[Machine Learning in Trading]] — Applying data-driven models to classification, ranking, and decision problems in trading
+- [[Reinforcement Learning for Execution]] — Adaptive execution control using sequential decision methods under market-state feedback
 - [[LLM in Trading]] — Using large language models for extraction, research support, and AI-assisted trading workflows
 - [[Backtesting]] — Simulating strategies on historical data with realistic assumptions
 - [[Portfolio and Risk Management]] — Converting trade ideas into controlled capital allocation and exposure limits
@@ -59,7 +63,16 @@
 ## Carbon Science Concepts
 - [[Carbon Cycle]] — How carbon moves among atmosphere, oceans, biosphere, and geologic reservoirs
 - [[Carbon Capture and Storage]] — Technologies and systems for capturing and storing CO2 emissions
+- [[Coal]] — Carbon-rich fossil fuel linking geologic storage, industrial energy use, and emissions
+- [[Carbon in Energy]] — How carbon participates in fuels, conversion systems, emissions, and decarbonization
 - [[Carbon Allotrope]] — Distinct structural forms of carbon such as diamond, graphite, and graphene
+- [[Fullerenes]] — Closed-cage carbon allotropes that extend the carbon-materials branch into molecular nanoscience
+- [[Carbon Catalysis]] — Carbon materials as chemically active catalyst systems in oxygen reduction, CO2 conversion, and green chemistry
+- [[Carbon-Carbon Composites]] — Carbon-fiber-reinforced carbon materials used in thermo-structural systems such as aircraft brakes
+- [[Graphene in Semiconductors]] — How graphene connects carbon materials to semiconductor interfaces, transport, and band-gap engineering
+- [[Activated Carbon]] — High-surface-area porous carbon central to adsorption, purification, and catalyst-support design
+- [[Carbon in Biology and DNA]] — A biology-facing carbon concept anchored by DNA as a carbon-based information polymer
+- [[DNA Discovery]] — The discovery history linking DNA's molecular structure to biological information transfer
 
 ## Thermodynamics Concepts
 - [[Thermodynamics]] — The framework for energy, entropy, equilibrium, and spontaneous change
@@ -76,6 +89,7 @@
 - [[Phase Diagram]] — A compact representation of stability regions and phase behavior across conditions
 - [[Phase Transition]] — A transformation between material phases driven by changing thermodynamic conditions
 - [[Solid State Chemistry]] — The chemistry of solids, structures, bonding, and composition-property relationships
+- [[Graphene in Semiconductors]] — A semiconductor-facing nanomaterials example linking carbon structure, transport, interfaces, and device behavior
 
 ## Topic Entities
 - [[UCAR]] — Earth-system research organization relevant to carbon-cycle science planning and coordination
@@ -122,6 +136,7 @@
 - [[Financial Identifier Comparison]] — ISIN vs CUSIP vs SEDOL vs FIGI vs LEI vs MIC
 - [[Algorithmic Trading vs High-Frequency Trading]] — Broad automated execution and strategy workflows vs latency-dominated trading
 - [[Carbon Cycle vs Carbon Capture and Storage]] — Natural carbon-system dynamics vs engineered intervention
+- [[Carbon Supports vs True Carbon Catalysts]] — When carbon mainly carries another catalyst vs when the carbon framework is catalytically active itself
 - [[Thermodynamics vs Kinetics]] — Whether change is favored vs how fast it proceeds
 - [[Thermodynamics vs Chemical Thermodynamics]] — General thermodynamic framework vs the chemistry-facing equilibrium and reaction layer
 - [[Materials Science vs Solid-State Chemistry]] — Broad structure-property engineering field vs chemistry-focused study of solids
@@ -147,4 +162,4 @@
 
 ---
 
-**Coverage summary:** 58 concept pages | 24 entity pages | 15 guides | 13 comparisons = **110 pages total** (excl. index)
+**Coverage summary:** 71 concept pages | 24 entity pages | 15 guides | 14 comparisons = **124 pages total** (excl. index)

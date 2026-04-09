@@ -164,3 +164,43 @@
 
 - Created 6 new concept pages: `Time Series Analysis in Trading`, `Pairs Trading`, `Options Trading`, `Futures Trading`, `Machine Learning in Trading`, and `LLM in Trading`
 - Updated `Strategy Research`, the roadmap guide, the starter guide, the wiki index, and the Algo Trading focused-topic metadata so learners can move from the high-level research stage into concrete strategy families
+
+## [2026-04-09] ingest | Added the next Algo Trading strategy layer
+
+- Created 4 new concept pages: `Technical Indicators`, `Trend Following`, `Mean Reversion`, and `Reinforcement Learning for Execution`
+- Updated the strategy, time-series, machine-learning, execution, roadmap, starter-guide, index, and focused-topic files so the Algo Trading branch now exposes both classic systematic motifs and an explicit execution-specific RL path
+
+## [2026-04-09] sources+ingest | Expanded Carbon Science with fullerene and carbon-composite material
+
+- Added 3 new source notes: Harry Marsh's `Introduction to Carbon Science`, a placeholder note for the requested Solomon fullerene literature thread, and a carbon-carbon composite / aircraft-brake literature note
+- Created 2 new concept pages: `Fullerenes` and `Carbon-Carbon Composites`
+- Updated the carbon allotrope page, carbon science guides, index, and focused-topic metadata so the Carbon Science branch now includes fullerene chemistry and aerospace-facing carbon-composite applications
+
+## [2026-04-09] sources+ingest | Extended Carbon Science into carbon catalysis
+
+- Added a carbon-catalysis source note drawing on recent reviews of carbon catalysts for oxygen reduction and CO2 conversion
+- Created the `Carbon Catalysis` concept page
+- Updated the carbon allotrope page, carbon guides, index, and focused-topic metadata so the Carbon Science branch now includes catalytically active carbon frameworks alongside structural carbon materials
+
+## [2026-04-09] sources+ingest | Added graphene semiconductor coverage across Carbon Science and Materials Science
+
+- Added a source note on graphene-semiconductor systems covering the band-gap problem, heterostructures, and recent graphene-semiconductor work
+- Created the `Graphene in Semiconductors` concept page
+- Updated the carbon allotrope page, both science source guides, both starter guides, the index, and focused-topic metadata so graphene now appears as an explicit semiconductor-facing branch rather than only as a passing allotrope example
+
+## [2026-04-09] ingest | Added activated-carbon and catalyst-role distinctions to Carbon Science
+
+- Created the `Activated Carbon` concept page and the `Carbon Supports vs True Carbon Catalysts` comparison page
+- Updated the carbon catalysis page and carbon guides so the branch now distinguishes adsorption-heavy porous carbons, support roles, and genuinely active carbon catalysts more clearly
+
+## [2026-04-09] sources+ingest | Added coal, energy, and biology-facing carbon branches
+
+- Added 2 new source notes on coal in energy systems and carbon's role in biology through DNA
+- Created 3 new concept pages: `Coal`, `Carbon in Energy`, and `Carbon in Biology and DNA`
+- Updated the carbon science guides, index, and focused-topic metadata so the topic now branches more explicitly toward industrial energy systems and biomolecular carbon in addition to climate, materials, and catalysis
+
+## [2026-04-09] sources+ingest | Added DNA-discovery history to the Carbon Science biology branch
+
+- Added a source note on DNA discovery history using Nobel and NHGRI context
+- Created the `DNA Discovery` concept page
+- Updated the carbon biology page, carbon guides, index, and focused-topic metadata so the Carbon Science branch now includes a small discovery-history layer alongside biomolecular carbon structure

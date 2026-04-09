@@ -11,7 +11,7 @@ Materials science explains why materials behave the way they do by connecting mi
 
 This makes the field inherently integrative. Chemistry matters because composition and bonding determine what structures are possible. Physics matters because electronic structure, lattice vibrations, thermal transport, magnetism, elasticity, and phase behavior all depend on that structure. Engineering matters because materials are processed, shaped, and deployed under practical constraints. Thermodynamics matters because phase stability, transformations, and equilibrium all depend on energetic tradeoffs. For GraphWiki, this means [[Materials Science]] is naturally linked to [[Thermodynamics]], [[Entropy]], [[Phase Diagram]], and [[Phase Transition]] reasoning.
 
-The topic is also a useful bridge outward. [[Carbon Allotrope]] is already a materials-facing concept in the Carbon Science branch, and future materials pages can naturally connect nanomaterials, solid-state chemistry, continuum mechanics, and phase transitions into a fuller branch. That broader framing matters because materials science is often encountered from more than one teaching angle: a chemistry-facing view emphasizes bonding and composition, while a physics-facing view emphasizes structure, excitations, defects, elasticity, and phase behavior.
+The topic is also a useful bridge outward. [[Carbon Allotrope]] is already a materials-facing concept in the Carbon Science branch, and pages such as [[Graphene in Semiconductors]] can naturally connect carbon nanomaterials, electronic materials, solid-state chemistry, continuum mechanics, and phase transitions into a fuller branch. That broader framing matters because materials science is often encountered from more than one teaching angle: a chemistry-facing view emphasizes bonding and composition, while a physics-facing view emphasizes structure, excitations, defects, elasticity, and phase behavior.
 
 ## Physics-Facing Angle
 [coverage: medium]
@@ -41,7 +41,7 @@ That perspective is already implicit in this repository's source base. MIT's str
 
 - **Is-a:** Interdisciplinary scientific and engineering field
 - **Has-part:** Structure-property relationships, defects, phase behavior, processing, mechanics, characterization
-- **Related:** [[Thermodynamics]], [[Entropy]], [[Kinetics]], [[Phase Diagram]], [[Phase Transition]], [[Solid State Chemistry]], [[Condensed Matter Physics]], [[Carbon Allotrope]]
+- **Related:** [[Thermodynamics]], [[Entropy]], [[Kinetics]], [[Phase Diagram]], [[Phase Transition]], [[Solid State Chemistry]], [[Condensed Matter Physics]], [[Carbon Allotrope]], [[Graphene in Semiconductors]]
 - **Used-by:** Materials engineering, nanoscience, metallurgy, semiconductor research, energy materials analysis, physics-oriented teaching on solids and structure
 
 ## Examples
@@ -49,6 +49,7 @@ That perspective is already implicit in this repository's source base. MIT's str
 - Explaining why steel microstructure changes with thermal treatment and affects hardness
 - Using phase behavior to understand alloy design and ceramic stability
 - Connecting graphene and other carbon forms to electrical and mechanical performance
+- Using graphene-based electronic materials to connect nanostructure, transport, and semiconductor-device behavior
 - Relating lattice vibrations and structure to thermal response in a material system
 - Using continuum descriptions to connect microscopic structure with large-scale mechanical behavior
 
@@ -67,3 +68,4 @@ That perspective is already implicit in this repository's source base. MIT's str
 - [[Condensed Matter Physics]]
 - [[Materials Science Academic Source Guide]]
 - [[Carbon Allotrope]]
+- [[Graphene in Semiconductors]]
