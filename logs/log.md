@@ -74,3 +74,11 @@
 - Updated `Financial Ontology Academic Source Guide` to include the industry extension layer
 - Updated `wiki/index.md` to include the additional guide pages
 - These additions strengthen the source base for future topic expansion, but Carbon Science and Algo Trading still require dedicated source passes before they can be promoted to first-class topic datasets
+
+## [2026-04-08] sources+ingest | Added starter source packs for carbon science and algo trading
+
+- Added `sources/web-clips/carbon-science-academic-source-pack.md` with verified university-hosted material spanning carbon-cycle science, carbon capture, and carbon materials
+- Added `sources/web-clips/algo-trading-academic-source-pack.md` with university-hosted material on execution costs, order-book algorithms, high-frequency trading, and market microstructure
+- Created 2 new guide pages: Carbon Science Academic Source Guide and Algo Trading Academic Source Guide
+- Updated `wiki/index.md` to include the new guide pages
+- This batch closes the first-pass source coverage gap for all six planned GraphWiki topics, but Carbon Science and Algo Trading still need dedicated concept/entity page creation before they can be promoted to first-class topic datasets in the selector
