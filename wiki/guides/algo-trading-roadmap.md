@@ -12,7 +12,7 @@ Move to [[Trading Data and Analysis]]. The roadmap is right to make this explici
 
 ## Stage 3: Study Strategy Families
 
-Read [[Strategy Research]] next. This is where the roadmap's branches into equities, futures, options, technical indicators, time series, pairs trading, machine learning, quantitative finance, and LLM-oriented workflows fit conceptually. In GraphWiki, that layer now opens into [[Time Series Analysis in Trading]], [[Pairs Trading]], [[Options Trading]], [[Futures Trading]], [[Machine Learning in Trading]], and [[LLM in Trading]]. The goal is to understand the space of systematic strategy design before overfitting to one coding pattern.
+Read [[Strategy Research]] next. This is where the roadmap's branches into equities, futures, options, technical indicators, time series, pairs trading, machine learning, quantitative finance, and LLM-oriented workflows fit conceptually. In GraphWiki, that layer now opens into [[Technical Indicators]], [[Trend Following]], [[Mean Reversion]], [[Time Series Analysis in Trading]], [[Pairs Trading]], [[Options Trading]], [[Futures Trading]], [[Machine Learning in Trading]], [[Reinforcement Learning for Execution]], and [[LLM in Trading]]. The goal is to understand the space of systematic strategy design before overfitting to one coding pattern.
 
 ## Stage 4: Add Portfolio and Risk Thinking
 
@@ -44,7 +44,11 @@ Return to [[Financial Knowledge Graph]] once the workflow is clear. Trading syst
 - [[Algorithmic Trading]]
 - [[Trading Data and Analysis]]
 - [[Strategy Research]]
+- [[Technical Indicators]]
+- [[Trend Following]]
+- [[Mean Reversion]]
 - [[Backtesting]]
 - [[Execution Strategies]]
+- [[Reinforcement Learning for Execution]]
 - [[Live Trading]]
 - [[Financial Knowledge Graph]]

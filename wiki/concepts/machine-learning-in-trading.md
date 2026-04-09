@@ -11,7 +11,7 @@ Machine learning is included as its own branch in the QuantInsti and Quantra roa
 
 The main challenge is that financial data is noisy, adaptive, and expensive to overfit. A machine-learning model can appear impressive in sample while failing immediately in live conditions. For that reason, the ML branch depends heavily on disciplined [[Trading Data and Analysis]], careful [[Backtesting]], and conservative [[Performance Evaluation]]. Feature leakage, unstable labels, and shifting market regimes matter as much as model architecture.
 
-In GraphWiki, this page also helps separate general enthusiasm around AI from actual trading-system design. A good ML trading workflow still has to answer the same questions as other strategies: what is the target, how is the signal deployed, what risks does it create, and how does it survive costs and execution constraints?
+In GraphWiki, this page also helps separate general enthusiasm around AI from actual trading-system design. A good ML trading workflow still has to answer the same questions as other strategies: what is the target, how is the signal deployed, what risks does it create, and how does it survive costs and execution constraints? The more execution-specific side of that branch is now surfaced explicitly in [[Reinforcement Learning for Execution]].
 
 ## Key Properties
 
@@ -25,7 +25,7 @@ In GraphWiki, this page also helps separate general enthusiasm around AI from ac
 
 - **Is-a:** Strategy family, modeling approach
 - **Has-part:** Feature engineering, label design, model training, validation, deployment policy
-- **Related:** [[Strategy Research]], [[Trading Data and Analysis]], [[Backtesting]], [[Performance Evaluation]], [[LLM in Trading]]
+- **Related:** [[Strategy Research]], [[Trading Data and Analysis]], [[Backtesting]], [[Performance Evaluation]], [[Reinforcement Learning for Execution]], [[LLM in Trading]]
 - **Used-by:** Quant researchers, ML engineers in finance, systematic hedge funds, research platforms
 
 ## Examples
@@ -45,5 +45,6 @@ In GraphWiki, this page also helps separate general enthusiasm around AI from ac
 - [[Strategy Research]]
 - [[Trading Data and Analysis]]
 - [[Backtesting]]
+- [[Reinforcement Learning for Execution]]
 - [[LLM in Trading]]
 - [[Performance Evaluation]]

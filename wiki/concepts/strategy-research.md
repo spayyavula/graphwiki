@@ -9,7 +9,7 @@
 
 The QuantInsti and Quantra roadmap treats strategy learning as a broad family rather than a single technique. That is important because algorithmic trading spans execution algorithms, trend following, mean reversion, pairs trading, machine-learning systems, options workflows, futures strategies, and high-frequency methods. A useful roadmap therefore organizes research by problem type and asset class instead of pretending there is one canonical strategy template.
 
-In GraphWiki, that family now branches into concrete subtopics such as [[Time Series Analysis in Trading]], [[Pairs Trading]], [[Options Trading]], [[Futures Trading]], [[Machine Learning in Trading]], and [[LLM in Trading]]. Those pages are not meant to exhaust the field, but they give the Algo Trading branch the same internal structure that the QuantInsti and Quantra map gives at the curriculum level.
+In GraphWiki, that family now branches into concrete subtopics such as [[Technical Indicators]], [[Trend Following]], [[Mean Reversion]], [[Time Series Analysis in Trading]], [[Pairs Trading]], [[Options Trading]], [[Futures Trading]], [[Machine Learning in Trading]], [[Reinforcement Learning for Execution]], and [[LLM in Trading]]. Those pages are not meant to exhaust the field, but they give the Algo Trading branch the same internal structure that the QuantInsti and Quantra map gives at the curriculum level.
 
 Strategy research converts market intuition into explicit rules. Those rules may involve entry and exit conditions, risk constraints, rebalancing logic, or execution schedules. Some strategies rely on cross-sectional comparisons, some on time-series structure, and others on event-driven or options-specific reasoning. The point of this stage is not just to find profitable ideas, but to express them clearly enough that they can be simulated, challenged, and ultimately deployed.
 
@@ -27,7 +27,7 @@ Within GraphWiki, this concept helps separate the signal-design problem from the
 
 - **Is-a:** Quant research stage, strategy-design layer
 - **Has-part:** Signal definition, feature selection, rule formalization, parameter testing, stress scenarios, strategy families
-- **Related:** [[Algorithmic Trading]], [[Trading Data and Analysis]], [[Backtesting]], [[Execution Strategies]], [[Time Series Analysis in Trading]], [[Pairs Trading]], [[Machine Learning in Trading]], [[High-Frequency Trading]]
+- **Related:** [[Algorithmic Trading]], [[Trading Data and Analysis]], [[Backtesting]], [[Execution Strategies]], [[Technical Indicators]], [[Trend Following]], [[Mean Reversion]], [[Time Series Analysis in Trading]], [[Pairs Trading]], [[Machine Learning in Trading]], [[Reinforcement Learning for Execution]], [[High-Frequency Trading]]
 - **Used-by:** Quant researchers, portfolio managers, discretionary traders moving into systematic workflows
 
 ## Examples
@@ -48,10 +48,14 @@ Within GraphWiki, this concept helps separate the signal-design problem from the
 - [[Trading Data and Analysis]]
 - [[Backtesting]]
 - [[Execution Strategies]]
+- [[Technical Indicators]]
+- [[Trend Following]]
+- [[Mean Reversion]]
 - [[Time Series Analysis in Trading]]
 - [[Pairs Trading]]
 - [[Options Trading]]
 - [[Futures Trading]]
 - [[Machine Learning in Trading]]
+- [[Reinforcement Learning for Execution]]
 - [[LLM in Trading]]
 - [[High-Frequency Trading]]

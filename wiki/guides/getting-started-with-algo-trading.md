@@ -28,7 +28,7 @@ Move to [[Trading Data and Analysis]]. This is where the roadmap becomes more re
 
 ## Step 4: Study Strategy Design and Risk
 
-Read [[Strategy Research]] and [[Portfolio and Risk Management]]. This is the stage where you move from isolated ideas to a disciplined trading process. A strategy is not credible if it cannot be expressed clearly, sized properly, and constrained by risk. Then branch into concrete families: [[Time Series Analysis in Trading]], [[Pairs Trading]], [[Options Trading]], [[Futures Trading]], [[Machine Learning in Trading]], and [[LLM in Trading]].
+Read [[Strategy Research]] and [[Portfolio and Risk Management]]. This is the stage where you move from isolated ideas to a disciplined trading process. A strategy is not credible if it cannot be expressed clearly, sized properly, and constrained by risk. Then branch into concrete families: [[Technical Indicators]], [[Trend Following]], [[Mean Reversion]], [[Time Series Analysis in Trading]], [[Pairs Trading]], [[Options Trading]], [[Futures Trading]], [[Machine Learning in Trading]], [[Reinforcement Learning for Execution]], and [[LLM in Trading]].
 
 ---
 
@@ -70,11 +70,15 @@ Return to [[Financial Knowledge Graph]] and then read [[Algo Trading Roadmap]]. 
 - [[Trading Data and Analysis]]
 - [[Strategy Research]]
 - [[Portfolio and Risk Management]]
+- [[Technical Indicators]]
+- [[Trend Following]]
+- [[Mean Reversion]]
 - [[Time Series Analysis in Trading]]
 - [[Pairs Trading]]
 - [[Options Trading]]
 - [[Futures Trading]]
 - [[Machine Learning in Trading]]
+- [[Reinforcement Learning for Execution]]
 - [[LLM in Trading]]
 - [[Backtesting]]
 - [[Performance Evaluation]]

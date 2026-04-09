@@ -11,7 +11,7 @@ Execution strategies form one of the clearest bridges between the broad QuantIns
 
 This layer includes schedule-based algorithms such as VWAP and TWAP, liquidity-seeking logic, smart order routing, and more adaptive execution policies that respond to order-book state. It depends directly on [[Market Microstructure]] and the [[Limit Order Book]], because spread costs, queue position, venue fragmentation, and temporary impact all shape implementation quality. In infrastructure terms, execution also touches messaging standards such as [[FIX Protocol]].
 
-In the roadmap, execution strategies appear after research and backtesting because implementation should reflect what the strategy is trying to optimize. A strong learner should be able to explain when poor performance came from a weak signal and when it came from weak execution.
+In the roadmap, execution strategies appear after research and backtesting because implementation should reflect what the strategy is trying to optimize. A strong learner should be able to explain when poor performance came from a weak signal and when it came from weak execution. That distinction is also why more advanced adaptive methods such as [[Reinforcement Learning for Execution]] belong here rather than being treated as generic machine learning.
 
 ## Key Properties
 
@@ -25,7 +25,7 @@ In the roadmap, execution strategies appear after research and backtesting becau
 
 - **Is-a:** Trade-implementation layer, execution workflow
 - **Has-part:** VWAP, TWAP, participation algorithms, liquidity seeking, smart order routing
-- **Related:** [[Algorithmic Trading]], [[Market Microstructure]], [[Limit Order Book]], [[FIX Protocol]], [[Live Trading]]
+- **Related:** [[Algorithmic Trading]], [[Market Microstructure]], [[Limit Order Book]], [[FIX Protocol]], [[Reinforcement Learning for Execution]], [[Live Trading]]
 - **Used-by:** Brokers, buy-side desks, quantitative execution teams, market makers
 
 ## Examples
@@ -47,4 +47,5 @@ In the roadmap, execution strategies appear after research and backtesting becau
 - [[Market Microstructure]]
 - [[Limit Order Book]]
 - [[FIX Protocol]]
+- [[Reinforcement Learning for Execution]]
 - [[Live Trading]]

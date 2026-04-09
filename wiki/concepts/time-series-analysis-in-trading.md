@@ -25,7 +25,7 @@ Time-series models also interact with the rest of the algo-trading workflow. The
 
 - **Is-a:** Strategy family, quantitative modeling approach
 - **Has-part:** Trend models, mean-reversion models, volatility models, regime models, spread models
-- **Related:** [[Strategy Research]], [[Trading Data and Analysis]], [[Backtesting]], [[Performance Evaluation]], [[Market Data]]
+- **Related:** [[Strategy Research]], [[Technical Indicators]], [[Trend Following]], [[Mean Reversion]], [[Trading Data and Analysis]], [[Backtesting]], [[Performance Evaluation]], [[Market Data]]
 - **Used-by:** Quant researchers, systematic macro traders, statistical arbitrage teams, portfolio researchers
 
 ## Examples
@@ -43,6 +43,9 @@ Time-series models also interact with the rest of the algo-trading workflow. The
 ## See Also
 
 - [[Strategy Research]]
+- [[Technical Indicators]]
+- [[Trend Following]]
+- [[Mean Reversion]]
 - [[Pairs Trading]]
 - [[Machine Learning in Trading]]
 - [[Trading Data and Analysis]]
