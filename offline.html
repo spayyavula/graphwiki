@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<title>Offline — Ontology Wiki</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #07111f;
+    --bg-secondary: #0d1a2e;
+    --surface: rgba(18, 30, 49, 0.72);
+    --border: rgba(255, 255, 255, 0.16);
+    --text: #eef3fb;
+    --muted: #97a6bc;
+    --blue: #58a6ff;
+    --shadow: 0 30px 80px rgba(2, 6, 18, 0.4);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    font-family: Manrope, Segoe UI, sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at 18% 22%, rgba(88,166,255,0.18), transparent 22%),
+      radial-gradient(circle at 80% 18%, rgba(247,129,102,0.12), transparent 20%),
+      linear-gradient(160deg, var(--bg), var(--bg-secondary));
+  }
+
+  .card {
+    width: min(560px, 100%);
+    padding: 28px;
+    border-radius: 28px;
+    background: linear-gradient(180deg, rgba(26, 40, 66, 0.7), rgba(11, 18, 32, 0.64));
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(22px) saturate(1.35);
+    -webkit-backdrop-filter: blur(22px) saturate(1.35);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 18px rgba(88,166,255,0.7);
+  }
+
+  h1 {
+    margin: 0 0 12px;
+    font-size: clamp(30px, 6vw, 46px);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+
+  p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .actions {
+    margin-top: 22px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.14);
+    color: var(--text);
+    text-decoration: none;
+    background: rgba(255,255,255,0.06);
+    font-weight: 700;
+  }
+  .button.primary {
+    background: linear-gradient(180deg, rgba(88,166,255,0.3), rgba(88,166,255,0.16));
+    border-color: rgba(88,166,255,0.45);
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="eyebrow"><span class="dot"></span>Ontology Wiki</div>
+    <h1>You’re offline.</h1>
+    <p>The graph app can still reopen from cache after it has been loaded once. If this is your first visit or some remote assets are missing, reconnect and refresh to complete the local cache.</p>
+    <div class="actions">
+      <a class="button primary" href="./index.html">Try the app again</a>
+      <a class="button" href="./">Reload home</a>
+    </div>
+  </main>
+</body>
+</html>
