@@ -56,3 +56,21 @@
 - Updated index.md with new sections: Financial Ontology Concepts, Standards & Ontologies, Financial KG Projects
 - Regenerated wiki-graph.html: 59 nodes, 507 edges
 - Total wiki: 26 concepts | 19 entities | 4 guides | 6 comparisons = 55 pages
+
+## [2026-04-08] sources+ingest | Added academic source packs for learning ontology and financial ontology
+
+- Added `sources/web-clips/learning-ontology-academic-source-pack.md` with university-hosted ontology and semantic web references from MIT, Columbia, Berkeley, and Harvard
+- Added `sources/web-clips/financial-ontology-academic-source-pack.md` with a first batch of academic finance KG references from Columbia and NYU, plus repository-backed domain standards already used in the wiki
+- Created 2 new guide pages: Learning Ontology Academic Source Guide, Financial Ontology Academic Source Guide
+- Updated `wiki/index.md` to include the new guide pages and refreshed the last-updated date
+- This ingest batch establishes a stronger academic source base for future multi-topic GraphWiki expansion, but further curation is still needed before Carbon Science, Materials Science, Thermodynamics, and Algo Trading can be treated as first-class topic datasets
+
+## [2026-04-08] sources+ingest | Added thermodynamics/materials source packs and second-pass finance curation
+
+- Added `sources/web-clips/thermodynamics-academic-source-pack.md` with university-hosted thermodynamics references from MIT, Berkeley, Princeton, and Caltech
+- Added `sources/web-clips/materials-science-academic-source-pack.md` with verified materials-science and materials-thermodynamics sources from MIT, Berkeley, and Caltech
+- Added `sources/web-clips/financial-ontology-industry-source-pack.md` to extend the finance branch with aggregator and investment-firm-facing graph/identifier infrastructure material, especially LSEG/PermID and Bloomberg-Columbia material
+- Created 2 new guide pages: Thermodynamics Academic Source Guide and Materials Science Academic Source Guide
+- Updated `Financial Ontology Academic Source Guide` to include the industry extension layer
+- Updated `wiki/index.md` to include the additional guide pages
+- These additions strengthen the source base for future topic expansion, but Carbon Science and Algo Trading still require dedicated source passes before they can be promoted to first-class topic datasets

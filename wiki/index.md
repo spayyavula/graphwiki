@@ -1,7 +1,7 @@
 # Ontology Wiki — Index
 
 > Master catalog of all wiki content, organized by category.
-> Last updated: 2026-04-05
+> Last updated: 2026-04-08
 
 ---
 
@@ -79,7 +79,11 @@
 - [[Your First RDF Graph]] — Hands-on Turtle and SPARQL tutorial
 - [[Building a Financial Knowledge Graph]] — Step-by-step stock market KG construction
 - [[Exploring FIBO]] — Getting started with the Financial Industry Business Ontology
+- [[Learning Ontology Academic Source Guide]] — University-hosted source map for ontology learning and semantic web study
+- [[Financial Ontology Academic Source Guide]] — Starter source map for finance ontologies and financial knowledge graphs
+- [[Thermodynamics Academic Source Guide]] — University-hosted source map for foundational and applied thermodynamics
+- [[Materials Science Academic Source Guide]] — University-hosted source map for structure, phase behavior, and materials thermodynamics
 
 ---
 
-**Coverage summary:** 26 concept pages | 19 entity pages | 4 guides | 6 comparisons = **55 pages total** (excl. index)
+**Coverage summary:** 26 concept pages | 19 entity pages | 8 guides | 6 comparisons = **59 pages total** (excl. index)
