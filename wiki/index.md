@@ -1,7 +1,7 @@
 # Ontology Wiki — Index
 
 > Master catalog of all wiki content, organized by category.
-> Last updated: 2026-04-08
+> Last updated: 2026-04-09
 
 ---
 
@@ -50,6 +50,10 @@
 
 ## Thermodynamics Concepts
 - [[Thermodynamics]] — The framework for energy, entropy, equilibrium, and spontaneous change
+- [[Chemical Thermodynamics]] — The chemistry-facing treatment of free energy, equilibrium, chemical potential, and reacting systems
+- [[Gibbs Free Energy]] — The practical free-energy criterion for spontaneity and equilibrium at constant temperature and pressure
+- [[Chemical Potential]] — The multicomponent thermodynamics quantity governing equilibrium, transfer, and composition dependence
+- [[Equilibrium Constant]] — The quantity that expresses where a reaction sits at equilibrium in terms of activities or effective concentrations
 - [[Entropy]] — A state function central to spontaneity, irreversibility, and equilibrium analysis
 - [[Kinetics]] — The study of how fast physical and chemical processes occur and what controls their rates
 
@@ -106,6 +110,7 @@
 - [[Algorithmic Trading vs High-Frequency Trading]] — Broad automated execution and strategy workflows vs latency-dominated trading
 - [[Carbon Cycle vs Carbon Capture and Storage]] — Natural carbon-system dynamics vs engineered intervention
 - [[Thermodynamics vs Kinetics]] — Whether change is favored vs how fast it proceeds
+- [[Thermodynamics vs Chemical Thermodynamics]] — General thermodynamic framework vs the chemistry-facing equilibrium and reaction layer
 - [[Materials Science vs Solid-State Chemistry]] — Broad structure-property engineering field vs chemistry-focused study of solids
 - [[Materials Science vs Condensed Matter Physics]] — Broad materials field vs the physics-centered study of collective behavior in matter
 - [[Phase Diagram vs Phase Transition]] — Stability-map representation vs the actual transformation process
@@ -128,4 +133,4 @@
 
 ---
 
-**Coverage summary:** 41 concept pages | 24 entity pages | 14 guides | 12 comparisons = **91 pages total** (excl. index)
+**Coverage summary:** 45 concept pages | 24 entity pages | 14 guides | 13 comparisons = **96 pages total** (excl. index)

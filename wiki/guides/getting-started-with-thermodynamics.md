@@ -1,6 +1,6 @@
 # Getting Started with Thermodynamics
 
-This guide provides a first path through the Thermodynamics branch of GraphWiki. The goal is to understand the basic logic of energy, entropy, equilibrium, and process direction before moving into advanced applications.
+This guide provides a first path through the Thermodynamics branch of GraphWiki. The goal is to understand the basic logic of energy, entropy, equilibrium, process direction, and chemical thermodynamics before moving into advanced applications.
 
 ## Prerequisites
 
@@ -20,21 +20,27 @@ Read [[Entropy]] next. Entropy is one of the key ideas that explains why process
 
 ---
 
-## Step 3: Separate Favorability from Speed
+## Step 3: Add the Chemical-Thermodynamics View
+
+Read [[Chemical Thermodynamics]] after the core introduction. This is where the branch becomes more recognizable to chemistry learners: [[Gibbs Free Energy]], reaction spontaneity, [[Equilibrium Constant|equilibrium constants]], [[Chemical Potential]], and multicomponent systems.
+
+---
+
+## Step 4: Separate Favorability from Speed
 
 Move to [[Kinetics]] and then [[Thermodynamics vs Kinetics]]. This is one of the most important conceptual distinctions in the branch. A process can be favored thermodynamically and still proceed slowly in practice.
 
 ---
 
-## Step 4: Connect the Theory to Phase Behavior
+## Step 5: Connect the Theory to Phase Behavior
 
 Read [[Phase Diagram]] and [[Phase Transition]] to see how thermodynamic ideas become visible in real systems. These pages bridge directly into materials science and make equilibrium reasoning more concrete.
 
 ---
 
-## Step 5: Use the Source Guide for Deeper Study
+## Step 6: Use the Source Guide for Deeper Study
 
-After the core pages, use [[Thermodynamics Academic Source Guide]] to choose a deeper direction such as classical foundations, combustion and equilibrium applications, or more advanced systems-oriented treatments.
+After the core pages, use [[Thermodynamics Academic Source Guide]] to choose a deeper direction such as classical foundations, chemical thermodynamics, combustion and equilibrium applications, or more advanced systems-oriented treatments.
 
 ## Sources
 
@@ -44,8 +50,13 @@ After the core pages, use [[Thermodynamics Academic Source Guide]] to choose a d
 
 - [[Thermodynamics]]
 - [[Entropy]]
+- [[Chemical Thermodynamics]]
+- [[Gibbs Free Energy]]
+- [[Chemical Potential]]
+- [[Equilibrium Constant]]
 - [[Kinetics]]
 - [[Thermodynamics vs Kinetics]]
+- [[Thermodynamics vs Chemical Thermodynamics]]
 - [[Phase Diagram]]
 - [[Phase Transition]]
 - [[Thermodynamics Academic Source Guide]]

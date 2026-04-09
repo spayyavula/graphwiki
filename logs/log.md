@@ -135,3 +135,21 @@
 - Created `wiki/concepts/condensed-matter-physics.md` to make the physics-oriented view of materials explicit inside the wiki graph
 - Created `wiki/comparisons/materials-science-vs-condensed-matter-physics.md` to distinguish the broader materials field from the physics-centered condensed-matter perspective
 - Updated the materials branch guides, cross-links, and index so the new node is surfaced as part of the Materials Science learning path rather than left implicit
+
+## [2026-04-09] ingest | Added chemical-thermodynamics framing to the Thermodynamics branch
+
+- Created `wiki/concepts/chemical-thermodynamics.md` to make the chemistry-heavy thermodynamics layer explicit in the wiki graph
+- Created `wiki/comparisons/thermodynamics-vs-chemical-thermodynamics.md` to distinguish the general thermodynamic framework from the reaction-and-equilibrium-centered chemistry view
+- Updated the thermodynamics concept page, guide, source guide, and index so the branch now clearly surfaces free energy, equilibrium, chemical potential, and reacting systems
+
+## [2026-04-09] ingest | Added Gibbs free energy and chemical potential to Thermodynamics
+
+- Created `wiki/concepts/gibbs-free-energy.md` and `wiki/concepts/chemical-potential.md` as first-class chemistry-facing thermodynamics concepts
+- Updated the thermodynamics and chemical-thermodynamics pages so Gibbs free energy and chemical potential are explicit cross-linked nodes rather than buried terms
+- Updated the thermodynamics guide, source guide, index, and focused topic metadata so both concepts surface inside the Thermodynamics branch
+
+## [2026-04-09] ingest | Added equilibrium constant to Thermodynamics
+
+- Created `wiki/concepts/equilibrium-constant.md` to make the chemistry-facing equilibrium quantity explicit in the Thermodynamics branch
+- Updated the thermodynamics, chemical-thermodynamics, Gibbs free energy, and chemical potential pages to connect equilibrium composition with free-energy reasoning
+- Updated the thermodynamics guide, source guide, index, and focused topic metadata so the branch now surfaces equilibrium constants directly
