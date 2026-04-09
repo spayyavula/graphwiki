@@ -82,3 +82,10 @@
 - Created 2 new guide pages: Carbon Science Academic Source Guide and Algo Trading Academic Source Guide
 - Updated `wiki/index.md` to include the new guide pages
 - This batch closes the first-pass source coverage gap for all six planned GraphWiki topics, but Carbon Science and Algo Trading still need dedicated concept/entity page creation before they can be promoted to first-class topic datasets in the selector
+
+## [2026-04-08] ingest | Added first Carbon Science and Algo Trading wiki pages
+
+- Created 7 new concept pages: Algorithmic Trading, Market Microstructure, Limit Order Book, High-Frequency Trading, Carbon Cycle, Carbon Capture and Storage, Carbon Allotrope
+- Created 2 new guide pages: Getting Started with Carbon Science, Getting Started with Algo Trading
+- Updated `wiki/index.md` with new topic sections and guide links
+- These pages establish the first real wiki layer for Carbon Science and Algo Trading and make both topics visible in the generated graph, but they still need more entities and comparisons before they are ready as full selector datasets

@@ -37,6 +37,17 @@
 - [[Market Data]] — Prices, rates, and indices as ontology concepts
 - [[Stock Exchange]] — Exchanges modeled in financial ontologies
 
+## Algo Trading Concepts
+- [[Algorithmic Trading]] — Computer-driven trade generation and execution in electronic markets
+- [[Market Microstructure]] — How trading rules and information flow shape prices and execution
+- [[Limit Order Book]] — The queue-based structure through which many markets match orders
+- [[High-Frequency Trading]] — Ultra-low-latency trading in modern electronic markets
+
+## Carbon Science Concepts
+- [[Carbon Cycle]] — How carbon moves among atmosphere, oceans, biosphere, and geologic reservoirs
+- [[Carbon Capture and Storage]] — Technologies and systems for capturing and storing CO2 emissions
+- [[Carbon Allotrope]] — Distinct structural forms of carbon such as diamond, graphite, and graphene
+
 ## Standards & Ontologies
 - [[FIBO]] — Financial Industry Business Ontology (2,436 OWL classes)
 - [[ISO 20022]] — Universal financial messaging with official OWL DL ontology
@@ -85,7 +96,9 @@
 - [[Materials Science Academic Source Guide]] — University-hosted source map for structure, phase behavior, and materials thermodynamics
 - [[Carbon Science Academic Source Guide]] — Starter source map for carbon-cycle science, carbon capture, and carbon materials
 - [[Algo Trading Academic Source Guide]] — Starter source map for execution algorithms, order books, and trading microstructure
+- [[Getting Started with Carbon Science]] — Beginner's path through carbon cycle, CCS, and carbon materials
+- [[Getting Started with Algo Trading]] — Beginner's path through execution, order books, and trading infrastructure
 
 ---
 
-**Coverage summary:** 26 concept pages | 19 entity pages | 10 guides | 6 comparisons = **61 pages total** (excl. index)
+**Coverage summary:** 33 concept pages | 19 entity pages | 12 guides | 6 comparisons = **70 pages total** (excl. index)
